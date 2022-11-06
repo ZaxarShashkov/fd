@@ -1,14 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
 
-    <h1>HomeWork</h1>
-    
+    <h1>Home Work №1 (ANKETA)</h1>
+
+
+    <script>
+        const gender = confirm('Вы мужчина?');
+
+        const lastName = gender === true ? prompt('Какая ваша фамилия ?', 'Иванов') :
+            prompt('Какая ваша фамилия ?', 'Иванова');
+
+        const firstName = gender === true ? prompt('Как вас зовут?', 'Иван') :
+            prompt('Как вас зовут?', 'Мария');
+
+        const middleName = gender === true ? prompt('Какое ваше отчество ?', 'Иванович') :
+            prompt('Какое ваше отчество ?', 'Ивановна');
+
+        const age = Number(prompt('Сколько вам лет', '18'))
+
+        // Определение пола 
+        function trueGender(gender) {
+            return gender === true ? 'Мужчина' : 'Женщина';
+        }
+
+        // Возраст +5
+        function future(age) {
+            if (age > 0) {
+                return age + 5
+            } else {
+                return 0
+            }
+        }
+
+        // Возраст в днях
+        function dayInAge(age) {
+            return age * 365
+        }
+
+        // На пенсии ли вы 
+        function retired(gender, age) {
+            return gender == true && age >= 62 ?
+                'Я на пенсии' : gender == false && age >= 58 ?
+                'Я на пенсии' : 'Нет'
+        }
+
+
+        // Итого  
+
+        alert(`Ваше ФИО: ${lastName} ${firstName} ${middleName} 
+Ваш возраст в годах: ${age} 
+Ваш возраст в днях: ${dayInAge(age)}
+Через 5 лет вам будет: ${future(age)}
+Ваш пол: ${trueGender(gender)}
+Вы на пенсии: ${retired(gender,age)} `)
+    </script>
 </body>
+
 </html>

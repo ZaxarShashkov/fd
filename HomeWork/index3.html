@@ -13,51 +13,48 @@
 
 
     <script>
-        // function fact2(n) {
-        //     if(n<= 1) {
-        //         return 1 
-        //     }
-        //     return n*fact2(n-1);
-        // }
-        // console.log(fact2(6))
-
         let arr = [5, 7,
             [4, [2], 8, [1, 3], 2],
             [9, []],
             1, 8
         ]
 
+        let arr1 = [5, 2, 2, [1, 5, 3, 2, [5, 3], 1, 1, 5], 7];
+
+
+        // function treeSum(arr) {
+        //     let sum = 0;
+        //     for (let i = 0; i < arr.length; i++) {
+        //         let value = arr[i]
+        //         console.log('----', value)
+        //         if (value === Math.round(value)) {
+        //             sum += value
+        //         }
+        //         if (Array.isArray(value)) {
+        //             sum += treeSum(value)
+        //         }
+        //     }
+        //     return sum
+        // }
+        // console.log(treeSum(arr))
 
         function treeSum(arr) {
             let sum = 0;
             for (let i = 0; i < arr.length; i++) {
                 let value = arr[i]
-                sum += value
                 console.log('----', value)
-                if (console.log((Array.isArray(value)))) {
-                    sum += treeSum(arr)
+                if (value === Math.round(value)) {
+                    sum += value
+                }
+                if (Array.isArray(value)) {
+                    sum += treeSum(value)
                 }
             }
+            return sum
         }
         console.log(treeSum(arr))
 
-        // let arr = [2, 4, 5, 7, [2,2,2,4], 6, 3, 3, 4, 4, 4];
 
-        // function arraySum(arr) {
-        //     let sum = 0;
-        //     for (let i = 0; i < arr.length; i++) {
-        //         let value = arr[i]
-        //         console.log(value)
-        //         if (console.log(Array.isArray(value))) {
-        //             sum += arraySum(value);
-        //         }
-        //         if (value === value) {
-        //             sum += value;
-        //         }
-        //     }
-        //     return sum;
-        // }
-        // console.log(arraySum(arr))
     </script>
 
 

@@ -19,13 +19,11 @@
             1, 8
         ]
 
-        let arr1 = [5, 2, 2, [1, 5, 3, 2, [5, 3], 1, 1, 5], 7, 'sda', 'asda'];
-
         function treeSum(arr) {
             let sum = 0;
             for (let i = 0; i < arr.length; i++) {
                 let value = arr[i]
-                console.log('----', value)
+                // console.log('----', value)
                 if (value === Number(value)) {
                     sum += value
                 }
@@ -36,8 +34,6 @@
             return sum
         }
         console.log(treeSum(arr))
-
-
     </script>
 
 

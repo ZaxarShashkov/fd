@@ -12,13 +12,12 @@
 
 
   <script>
-
     const str = prompt('Введите строку', 'palindrome')
 
 
     function palindrome(str) {
       let length = Math.floor(str.length / 2);
-      for (var i = 0; i < length; i++) {
+      for (let i = 0; i < length; i++) {
         if (str[i] !== str[str.length - i - 1]) {
           return alert('Dont palindrome');
         } else {
@@ -27,7 +26,6 @@
       }
     }
     palindrome(str)
-
   </script>
 
 </body>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -10,6 +10,59 @@
 
 <body>
 
+
+
+    <script>
+
+        function getStr() {
+            let str = prompt('Введите строку')
+            let count = 0;
+
+            function vowels(str) {
+                for (let i = 0; i < str.length; i++) {
+                    let letter = str[i].toLowerCase();
+                    switch (letter) {
+                        case 'и':
+                            count++;
+                            break;
+                        case 'у':
+                            count++;
+                            break;
+                        case 'е':
+                            count++;
+                            break;
+                        case 'ё':
+                            count++;
+                            break;
+                        case 'ы':
+                            count++;
+                            break;
+                        case 'а':
+                            count++;
+                            break;
+                        case 'о':
+                            count++;
+                            break;
+                        case 'э':
+                            count++;
+                            break;
+                        case 'я':
+                            count++;
+                            break;
+                        case 'й':
+                            count++;
+                            break;
+                        case 'ю':
+                            count++;
+                            break;
+                    }
+                }
+            }
+            vowels(str)
+            console.log(count)
+        }
+        getStr()
+    </script>
 </body>
 
 </html>

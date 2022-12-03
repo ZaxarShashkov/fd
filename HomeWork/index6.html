@@ -14,7 +14,22 @@
 
 
     <script>
+        function getStr() {
+            let vowel = ['й', 'е', 'у', 'ы', 'а', 'о', 'я', 'и', 'ё', 'ю', 'э'];
+            let str = prompt('Введите строку').toLowerCase();
+            let count = 0;
 
+            function vowels(str) {
+                for (let i = 0; i < str.length; i++) {
+                    if (vowel.includes(str[i])) {
+                        count++;
+                    }
+                }
+            }
+            vowels(str)
+            console.log(count)
+        }
+        getStr()
     </script>
 </body>
 

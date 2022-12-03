@@ -15,13 +15,12 @@
     <script>
 
         function getStr() {
-            let str = prompt('Введите строку')
+            let str = prompt('Введите строку').toLowerCase();
             let count = 0;
 
             function vowels(str) {
                 for (let i = 0; i < str.length; i++) {
-                    let letter = str[i].toLowerCase();
-                    switch (letter) {
+                    switch (str[i]) {
                         case 'и':
                             count++;
                             break;

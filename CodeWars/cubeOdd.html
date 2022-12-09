@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        function cubeOdd(arr) {
+            let odd = arr.filter(a => a % 2 === 1);
+            for (let i = 0; i < arr.length; i++) {
+                if (typeof (arr[i]) === "string") {
+                    return undefined;
+                }
+            }
+            for (let i = 0; i < odd.length; i++) {
+                return Math.pow(odd[i], 3) + Math.pow(odd[i + 1], 3);
+            }
+        }
+        console.log(cubeOdd(["a", 12, 9, "z", 42]));
+        console.log(cubeOdd([1, 2, 3, 4]));
+
+        let cubeOdd = a => {
+            let isNumeric = a.every(x => !isNaN(x))
+            return isNumeric ? a.filter(n => n % 2).reduce((s, n) => s + (n * n * n), 0) : undefined
+        }
+    </script>
+</body>
+
+</html>

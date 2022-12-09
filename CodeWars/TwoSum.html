@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function twoSum(numbers, target) {
+            for (let i = 0; i < numbers.length - 1; i++) {
+                console.log(numbers[i])
+                for (let j = i + 1; j < numbers.length; j++) {
+                    console.log(numbers[j])
+                    if (numbers[i] + numbers[j] === target) {
+                        console.log([i, j]);
+                    }
+                }
+            }
+        }
+        twoSum([1234, 5678, 9012], 14690)
+    </script>
+</body>
+
+</html>

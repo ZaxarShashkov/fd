@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        class SportCar {
+            constructor(model, maxspeed, carNum, volume) {
+                this.model = model;
+                this.maxspeed = maxspeed;
+                this.carNum = carNum;
+                this.volume = volume;
+            }
+            beep() {
+                console.log(this.model + ' sport car, max-speed: ' + this.maxspeed + ', sport car num: ' + this
+                    .carNum + ' volume: ' + this.volume +
+                    ', beeeep!');
+            }
+        }
+
+        let audi = new SportCar('Audi', '350 p/h', '777777 AE-7', '750 h/p');
+        let bmw = new SportCar('BMW', '370 p/h','123123 EA-7', '780 h/p');
+        let mercedes = new SportCar('Mercedes', '360 p/h', '333333 AO-3', '765 h/p');
+        audi.beep();
+        bmw.beep();
+        mercedes.beep();
+    </script>
+</body>
+
+</html>

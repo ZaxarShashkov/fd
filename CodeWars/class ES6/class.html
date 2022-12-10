@@ -13,25 +13,34 @@
 
     <script>
         class SportCar {
-            constructor(model, maxspeed, carNum, volume) {
+            constructor(model, maxspeed, carNum, volume, wheels) {
                 this.model = model;
                 this.maxspeed = maxspeed;
                 this.carNum = carNum;
                 this.volume = volume;
+                this.wheels = wheels;
             }
             beep() {
                 console.log(this.model + ' sport car, max-speed: ' + this.maxspeed + ', sport car num: ' + this
-                    .carNum + ' volume: ' + this.volume +
+                    .carNum + ' volume: ' + this.volume + ' кол-во колес ' + this.wheels +
                     ', beeeep!');
             }
         }
 
         let audi = new SportCar('Audi', '350 p/h', '777777 AE-7', '750 h/p');
-        let bmw = new SportCar('BMW', '370 p/h','123123 EA-7', '780 h/p');
+        let bmw = new SportCar('BMW', '370 p/h', '123123 EA-7', '780 h/p');
         let mercedes = new SportCar('Mercedes', '360 p/h', '333333 AO-3', '765 h/p');
         audi.beep();
         bmw.beep();
         mercedes.beep();
+
+        class SportMoto extends SportCar {
+            constructor() {
+                super();
+            }
+        }
+        let motoBmw = new SportMoto()
+        motoBmw.beep();
     </script>
 </body>
 

@@ -10,63 +10,97 @@
 
 <body>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Unbounded:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
 
         * {
             box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            font-family: 'Mochiy Pop One', sans-serif;
         }
 
         body {
-            font-family: 'Open Sans', sans-serif;
-            font-family: 'Unbounded', cursive;
-            padding: 0;
-            margin: 0;
+            background: #252839;
         }
 
         h1 {
-            margin-left: 10rem;
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
         }
 
-        div {
+
+        ul {
+            position: relative;
             display: flex;
             flex-direction: column;
-            margin-top: 2rem;
+            gap: 2rem;
+            padding: 5rem;
         }
 
-        a {
-            color: #000;
-            text-decoration: none;
-            padding-left: 2rem;
-            text-transform: capitalize;
+        ul li {
+            position: relative;
+            list-style: none;
         }
-        a:first-child::after {
-            content: '\2714';
-            color: green;
+
+        ul li a {
             font-size: 2rem;
-            padding-left: 1rem;
+            text-decoration: none;
+            letter-spacing: 2px;
+            line-height: 1em;
+            text-transform: uppercase;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+        }
+
+        ul li a::before {
+            content: attr(data-text);
+            position: absolute;
+            color: var(--clr);
+            width: 0;
+            overflow: hidden;
+            transition: 1s;
+            border-right: 5px solid var(--clr);
+            -webkit-text-stroke: 1px var(--clr);
+        }
+
+        ul li a:hover::before {
+            width: 50%;
+            filter: drop-shadow(0 0 25px var(--clr))
         }
     </style>
+    <h1>HomeWork</h1>
 
-    <h1>Home work</h1>
-    <div>
-        <a href="HomeWork/index.html">ANKETA </a>
-        <br>
-        <a href="HomeWork/index2.html">A2+</a>
-        <br>
-        <a href="HomeWork/index3.html">treeSum</a>
-        <br>
-        <a href="HomeWork/index4.html">Palindrome (str)</a>
-        <br>
-        <a href="HomeWork/index7.html">Palindrome rec</a>
-        <br>
-        <a href="HomeWork/index5.html">vowels</a>
-        <br>
-        <a href="HomeWork/index6.html">vowels 2.0</a>
-        <br>
-        <a href="HomeWork/index8.html">B1+</a>
-        <br>
-        <a href="HomeWork/index9.html">B2+</a>
-    </div>
+    <ul>
+        <li style="--clr:#00ade1">
+            <a href="HomeWork/index.html" data-text="&nbsp;Anketa">&nbsp;Anketa&nbsp;</a>
+        </li>
+        <li style="--clr:#ff6492">
+            <a href="HomeWork/index2.html" data-text="&nbsp;A2+">&nbsp;A2+&nbsp;</a>
+        </li>
+        <li style="--clr:#ffdd1c">
+            <a href="HomeWork/index3.html" data-text="&nbsp;TreeSum">&nbsp;TreeSum&nbsp;</a>
+        </li>
+        <li style="--clr:#00dc82">
+            <a href="HomeWork/index4.html" data-text="&nbsp;Palindrome(str)">&nbsp;Palindrome(str)&nbsp;</a>
+        </li>
+        <li style="--clr:#dc00d4">
+            <a href="HomeWork/index7.html" data-text="&nbsp;PalindromeRec">&nbsp;PalindromeRec&nbsp;</a>
+        </li>
+        <li style="--clr:#b61111">
+            <a href="HomeWork/index5.html" data-text="&nbsp;Vowels">&nbsp;Vowels&nbsp;</a>
+        </li>
+        <li style="--clr:#e8c774">
+            <a href="HomeWork/index6.html" data-text="&nbsp;Vowels2.0">&nbsp;Vowels2.0&nbsp;</a>
+        </li>
+        <li style="--clr:#6159b3">
+            <a href="HomeWork/index8.html" data-text="&nbsp;B1+">&nbsp;B1+&nbsp;</a>
+        </li>
+        <li style="--clr:#80ff45">
+            <a href="HomeWork/index9.html" data-text="&nbsp;B2+">&nbsp;B2+&nbsp;</a>
+        </li>
+    </ul>
+
 
 </body>
 

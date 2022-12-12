@@ -16,46 +16,78 @@
         }
 
 
-        .calc {}
+        .calc {
+            display: grid;
+            justify-content: center;
+            margin-top: 10rem;
+        }
 
-        .result {
-            width: 20.75rem;
-            height: 2.5rem;
-            border: 1px solid black;
+
+        .calc__inner {
+          
+        }
+
+        .calc__result {
+            width: 21rem;
+            height: 6.5rem;
+            border: 3px solid black;
+            
+        }
+        .calc__sign {
+            background-color: #000000;
+            text-align: center;
+            border-bottom: 1px solid #000;
+        }
+
+
+        .row {
+            margin-top: 0.3rem;
         }
 
         .row input {
             width: 5rem;
+            height: 5rem;
+            background-color: rgb(145, 132, 228);
+            color: #fff;
+            font-size: 1.5rem;
+            border: none;
+            text-align: center;
         }
     </style>
 
-    
+
     <div class="calc">
-        <div class="result"></div>
-        <div class="row1 row">
-            <input type="button" value="7">
-            <input type="button" value="8">
-            <input type="button" value="9">
-            <input type="button" value="*">
+        <div class="calc__inner">
+            <div class="calc__result"> </div>
+            <div class="calc__sign">
+                <div class="row1 row">
+                    <input type="button" value="7">
+                    <input type="button" value="8">
+                    <input type="button" value="9">
+                    <input type="button" value="*">
+                </div>
+                <div class="row2 row">
+                    <input type="button" value="4">
+                    <input type="button" value="5">
+                    <input type="button" value="6">
+                    <input type="button" value="-">
+                </div>
+                <div class="row3 row">
+                    <input type="button" value="1">
+                    <input type="button" value="2">
+                    <input type="button" value="3">
+                    <input type="button" value="+">
+                </div>
+                <div class="row4 row">
+                    <input type="button" value="0">
+                    <input type="button" value=",">
+                    <input type="button" value="=">
+                    <input type="button" value="/">
+                </div>
+            </div>
+
         </div>
-        <div class="row2 row">
-            <input type="button" value="4">
-            <input type="button" value="5">
-            <input type="button" value="6">
-            <input type="button" value="-">
-        </div>
-        <div class="row3 row">
-            <input type="button" value="1">
-            <input type="button" value="2">
-            <input type="button" value="3">
-            <input type="button" value="+">
-        </div>
-        <div class="row4 row">
-            <input type="button" value="0">
-            <input type="button" value=",">
-            <input type="button" value="=">
-            <input type="button" value="/">
-        </div>
+
     </div>
 
     <script>

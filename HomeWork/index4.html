@@ -12,7 +12,7 @@
 
 
   <script>
-    const str = prompt('Введите строку', 'palindrome').toLowerCase().trim().replaceAll('ё', 'е').replaceAll('.','').replaceAll(',','');
+    const str = prompt('Введите строку', 'palindrome').toLowerCase().replaceAll(' ', '').replaceAll('ё', 'е').replaceAll('.','').replaceAll(',','');
 
     function palindrome(str) {
       const len = Math.floor(str.length / 2);

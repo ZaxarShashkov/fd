@@ -9,7 +9,23 @@
 </head>
 
 <body>
-    
+
+
+    <script>
+        function menFromBoys(arr) {
+            let even = [];
+            let odd = [];
+            for(let num of arr) {
+                if(num%2 ===0 ) {
+                    even.push(num);
+                } else {
+                    odd.push(num)
+                }
+            }
+            return even.sort((a,b) => a-b).concat(odd.sort((a,b) => b-a))
+        }
+        console.log(menFromBoys([82,91,72,76,76,100,85]))
+    </script>
 </body>
 
 </html>

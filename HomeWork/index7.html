@@ -15,7 +15,7 @@
 
 
     <script>
-        let str = prompt('Введите строку').toLowerCase();
+        let str = prompt('Введите строку').toLowerCase().replaceAll(' ','');
 
         function palindromeRec(str) {
             if(str.length === 1){

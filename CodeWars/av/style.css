@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+}
+
+#app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    text-align: center;
+   
+}
+
+.render {
+    width: 10rem;
+    height: 3rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 999px;
+    margin: 2rem;
+}
+
+.sort__up , .sort__bot {
+    width: 10rem;
+    height: 3rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 999px;
+    margin: 2rem; 
+}

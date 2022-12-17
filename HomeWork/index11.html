@@ -12,19 +12,21 @@
 
 
     <script>
-        function menFromBoys(arr) {
-            let even = [];
-            let odd = [];
-            for(let num of arr) {
-                if(num%2 ===0 ) {
-                    even.push(num);
-                } else {
-                    odd.push(num)
-                }
-            }
-            return even.sort((a,b) => a-b).concat(odd.sort((a,b) => b-a))
+        function buildWrapperH1(txt) {
+            let tag = document.createElement('h1');
+            tag.textContent = txt.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll("'", '&apos;')
+                .replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+            console.log(tag);
         }
-        console.log(menFromBoys([82,91,72,76,76,100,85]))
+        buildWrapperH1('Zaxar < > Shashkov');
+
+        function buildWrapperP(txt) {
+            let tag = document.createElement('p');
+            tag.textContent = txt.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll("'", '&apos;')
+                .replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+            console.log(tag);
+        }
+        buildWrapperP('<Вкусные M&M"s>');
     </script>
 </body>
 

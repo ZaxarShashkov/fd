@@ -81,3 +81,17 @@ function sortToBot() {
 function insertAfter(elem, refElem) {
     return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
 }
+
+
+
+function getInfo() {
+    const brandTitle = document.querySelector('.brand').value;
+    const modelTitle = document.querySelector('.model').value;
+    const price = document.querySelector('.price').value;
+    cars.push({
+        brandTitle,
+        modelTitle,
+        price
+    });
+    console.log(cars);
+}

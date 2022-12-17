@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        function buildWrapperH1(txt, attr, attrValue) {
+            let tag = document.createElement('h1');
+            tag.textContent = txt.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll("'", '&apos;')
+                .replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+            let value = attrValue.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll("'", '&apos;')
+                .replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+            tag.setAttribute(attr, value);
+            console.log(tag);
+        }
+        buildWrapperH1('Zaxar < > Shashkov', 'title', 'M&M"s');
+
+        function buildWrapperP(txt, attr, attrValue) {
+            let tag = document.createElement('p');
+            tag.textContent = txt.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll("'", '&apos;')
+                .replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+            let value = attrValue.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll("'", '&apos;')
+                .replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+            tag.setAttribute(attr, value);
+            console.log(tag);
+        }
+        buildWrapperP('<Вкусные M&M"s>', 'lang', 'ru');
+    </script>
+</body>
+
+</html>

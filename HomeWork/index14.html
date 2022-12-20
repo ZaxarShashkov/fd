@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button class="add__coctail">Добавить коктейль </button>
+    <button class="get__info">Получить информацию о коктейле</button>
+    <button class="remove__info">Удалить коктейль</button>
+    <!-- 3.
+    Разработать веб-страницу для работы с хранилищем рецептов напитков.
+    На странице должны быть кнопки:
+    «ввод информации о напитке» — последовательно спрашивает название напитка, алкогольный он или нет, рецепт его
+    приготовления; сохраняет информацию о напитке в хранилище.
+    «получение информации о напитке» — спрашивает название напитка и выдаёт (на страницу, в консоль или в alert) либо
+    информацию о нём (по примеру, приведённому ниже), либо сообщение об отсутствии такого напитка в хранилище.
+    «удаление информации о напитке» — спрашивает название напитка и удаляет его из хранилища (если он там есть) с
+    выдачей соответствующего сообщения в информационное окно.
+    «перечень всех напитков» — выдаёт в информационное окно перечень всех напитков из хранилища (только названия). -->
+    <script>
+        class HashStorageFunc {
+            constructor() {
+                this.item = {};
+            }
+            addValue(key, value) {
+                return this.item[key] = value;
+            }
+            getValue(key) {
+                if (key in this.item) {
+                    return this.item[key];
+                } else {
+                    return undefined;
+                }
+            }
+            deleteValue(key) {
+                return key in this.item ? delete this.item[key] || true : false;
+            }
+            getKeys() {
+                return Object.keys(this.item);
+            }
+        }
+
+
+        let drinkStorage = new HashStorageFunc();
+
+        // Кнопки
+
+        // Добавление коктейля
+
+        document.querySelector('.add__coctail').onclick = function () {
+            let drinkName = prompt('Название коктейля?');
+            let isAlcohol = prompt('Напиток алкогольный');
+            let basic = prompt('Основные ингредиенты ?')
+            let from = prompt('Происхождение?');
+            console.log(drinkStorage.addValue(drinkName, {
+                isAlcohol,
+                basic,
+                from
+            }));
+        }
+
+
+        // Получение информации о коктейле 
+
+        document.querySelector('.get__info').onclick = function () {
+            let drinkName = prompt('Название напитка');
+            drinkStorage.getValue(drinkName)
+            if (drinkName in drinkStorage) {
+                return console.log(drinkStorage.keys);
+            } else {
+                return console.log(`Напиток ${drinkName} отсутствует в хранилище`);
+            }
+        }
+
+        // Удаление информации о напитке 
+
+        document.querySelector('.remove__info').onclick = function () {
+            let drinkName = 'Маргарита'
+            if (drinkStorage.deleteValue(drinkName)) {
+                console.log(`Информация о напитке ${drinkName} успешна удалена`)
+            } else {
+
+            }
+        }
+    </script>
+</body>
+
+</html>

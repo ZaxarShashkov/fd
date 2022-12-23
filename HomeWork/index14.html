@@ -6,14 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="index14.css">
 </head>
 
 <body>
+    <h1>Меню напитков</h1>
+    <div>
+        <button class="add__coctail"><span>Добавить коктейль</span></button>
+        <button class="get__info">Получить информацию о коктейле</button>
+        <button class="remove__info">Удалить коктейль</button>
+        <button class="get__name">Получить название напитков</button>
+    </div>
 
-    <button class="add__coctail">Добавить коктейль </button>
-    <button class="get__info">Получить информацию о коктейле</button>
-    <button class="remove__info">Удалить коктейль</button>
-    <button class="get__name">Получить название напитков</button>
 
     <script>
         class HashStorageFunc {
@@ -82,7 +86,7 @@ ${basic}
 
         document.querySelector('.remove__info').onclick = function () {
             let drinkName = prompt('Удаление');
-            if(drinkStorage.deleteValue(drinkName)) {
+            if (drinkStorage.deleteValue(drinkName)) {
                 return console.log(`Информации о ${drinkName} , успешна удалена`);
             } else {
                 return console.log(`Напиток ${drinkName} отсутствует в хранилище`);

@@ -10,9 +10,90 @@
 
 <body>
 
+    <button class="add__coctail">Добавить коктейль </button>
+    <button class="get__info">Получить информацию о коктейле</button>
+    <button class="remove__info">Удалить коктейль</button>
+    <button class="get__name">Получить название напитков</button>
 
     <script>
+        function HashStorageFunc() {
+            this.item = {};
+            this.addValue = function (key, value) {
+                return this.item[key] = value;
+            }
+            this.getValue = function (key) {
+                if (key in this.item) {
+                    return this.item[key];
+                } else {
+                    return undefined;
+                }
+            }
+            this.deleteValue = function (key) {
+                if (key in this.item) {
+                    return delete this.item[key];
+                }
+            }
+            this.getKeys = function () {
+                return Object.keys(this.item);
+            }
+        }
 
+
+        var drinkStorage = new HashStorageFunc();
+
+
+        // Кнопки
+
+        // Добавление коктейля
+
+        document.querySelector('.add__coctail').onclick = function () {
+            let drinkName = prompt('Название коктейля?');
+            let isAlcohol = prompt('Напиток алкогольный');
+            let basic = prompt('Основные ингредиенты ?')
+            let from = prompt('Происхождение?');
+            console.log(drinkStorage.addValue(drinkName, {
+                isAlcohol,
+                basic,
+                from
+            }));
+        };
+
+
+        // Получение информации о коктейле 
+
+        document.querySelector('.get__info').onclick = function () {
+            let drinkName = prompt('Введите название напитка!')
+            let info = drinkStorage.getValue(drinkName);
+            if (info) {
+                let {
+                    isAlcohol,
+                    basic,
+                    from
+                } = info;
+                return console.log((`Напиток ${drinkName}
+Алкогольный: ${isAlcohol}
+Основные ингредиенты: 
+${basic}
+Происхождение: ${from}`));
+            } else return console.log((`Напиток ${drinkName} отсутствует в хранилище`));
+        }
+
+        // Удаление информации о напитке 
+
+        document.querySelector('.remove__info').onclick = function () {
+            let drinkName = prompt('Удаление');
+            if (drinkStorage.deleteValue(drinkName)) {
+                return console.log(`Информации о ${drinkName} , успешна удалена`);
+            } else {
+                return console.log(`Напиток ${drinkName} отсутствует в хранилище`);
+            }
+        }
+
+        // Получение всех напитков
+
+        document.querySelector('.get__name').onclick = function () {
+            console.log(drinkStorage.getKeys());
+        }
     </script>
 </body>
 

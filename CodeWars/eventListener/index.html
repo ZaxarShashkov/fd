@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        .basic {
+            width: 300px;
+            height: 300px;
+            background: #0fa;
+            position: relative;
+        }
+
+        .square {
+            width: 50px;
+            height: 50px;
+            background-color: #000;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="basic">
+        <div class="square"></div>
+    </div>
+    <script>
+        let square = document.querySelector('.square');
+        console.log(square.offsetTop)
+        window.addEventListener('keydown', (e) => {
+            switch (e.keyCode) {
+                case 87:
+                    square.style.top = square.offsetTop - 1 + 'px';
+                    break;
+                case 68:
+                    square.style.left = square.offsetLeft + 1 + 'px';
+                    break;
+                case 83:
+                    square.style.top = square.offsetTop + 1 + 'px';
+                    break;
+                case 65:
+                    square.style.left = square.offsetLeft - 1 + 'px';
+                    break;
+            }
+        })
+    </script>
+
+</body>
+
+</html>

@@ -14,7 +14,7 @@
         let year = prompt('Введите год');
 
         function getCentury(value) {
-            return Math.ceil(value / 100)
+            return  Math.abs(Math.ceil(value / 100))
         }
         console.log(getCentury(year))
     </script>

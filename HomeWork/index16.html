@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index16.css">
+</head>
+
+<body>
+    <div>
+        <form action="" class="form" name="form">
+            <div>
+                <input type="text" placeholder="h1" class="h1" name="input" data-value="h1">
+                <input type="text" placeholder="h2" class="h2" name="input" data-value="h2">
+                <input type="text" placeholder="h3" class="h3" name="input" data-value="h3">
+                <input type="text" placeholder="h4" class="h4" name="input" data-value="h4">
+                <input type="text" placeholder="h5" class="h5" name="input" data-value="h5">
+                <input type="text" placeholder="h6" class="h6" name="input" data-value="h6">
+            </div>
+            <div><input type="text" placeholder="p" class="p" name="input" data-value="p">
+                <input type="button" value="accept" class="button" onclick="getValue()"></div>
+            <div>
+                <input type="text" placeholder="text li" class="li" name="li" data-value="li">
+                <input type="text" placeholder="ul" class="ul" name="input" data-value="ul" readonly value=" ">
+                <input type="button" value="Add li" class="btn__li" onclick="liCreate()">
+            </div>
+
+        </form>
+    </div>
+
+    <div class="app"></div>
+
+    <script>
+        let app = document.querySelector('.app');
+
+        function getValue() {
+            let elem = form.elements.input;
+            for (el of elem) {
+                if (el.value !== '') {
+                    let attr = el.getAttribute('data-value');
+                    let tag = document.createElement(attr);
+                    tag.textContent = el.value;
+                    console.log(app.appendChild(tag))
+                } else {
+                    console.log(`Введите текст`);
+                }
+            }
+        }
+
+
+
+
+        function liCreate() {
+            let ul = document.querySelector('ul');
+            let create = document.createElement('li');
+            let txt = form.elements.li.value;
+            let li = form.elements.li;
+            create.textContent = txt;
+            ul.appendChild(create)
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    max-width: 1200px;
+    padding: 2rem;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(3,33%);
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+}
+.button {
+    width: 10.7rem;
+
+}
+
+.ul {
+    opacity: 0;
+}
+
+.btn__li {
+    margin-top: 1rem;
+    width: 10.7rem;
+}

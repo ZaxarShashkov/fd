@@ -13,6 +13,7 @@
     <button class="add__coctail">Добавить коктейль </button>
     <button class="get__info">Получить информацию о коктейле</button>
     <button class="remove__info">Удалить коктейль</button>
+    <button class="get__name">Получить название напитков</button>
     <!-- 3.
     Разработать веб-страницу для работы с хранилищем рецептов напитков.
     На странице должны быть кнопки:
@@ -63,30 +64,42 @@
                 basic,
                 from
             }));
+            console.log(drinkStorage)
         }
 
 
         // Получение информации о коктейле 
 
         document.querySelector('.get__info').onclick = function () {
-            let drinkName = prompt('Название напитка');
-            drinkStorage.getValue(drinkName)
-            if (drinkName in drinkStorage) {
-                return console.log(drinkStorage.keys);
-            } else {
-                return console.log(`Напиток ${drinkName} отсутствует в хранилище`);
-            }
+            let drinkName = prompt('Введите название напитка!')
+            let info = drinkStorage.getValue(drinkName);
+            if (info) {
+                let {
+                    isAlcohol,
+                    basic,
+                    from
+                } = info;
+                return console.log((`Напиток ${drinkName}
+Алкогольный: ${isAlcohol}
+Основные ингредиенты: 
+${basic}
+Происхождение: ${from}`));
+            } else return console.log((`Напиток ${drinkName} отсутствует в хранилище`));
         }
 
         // Удаление информации о напитке 
 
         document.querySelector('.remove__info').onclick = function () {
-            let drinkName = 'Маргарита'
-            if (drinkStorage.deleteValue(drinkName)) {
-                console.log(`Информация о напитке ${drinkName} успешна удалена`)
+            let drinkName = prompt('Удаление');
+            if(drinkStorage.deleteValue(drinkName)) {
+                return console.log(`Информации о ${drinkName} , успешна удалена`);
             } else {
-
+                return console.log(`Напиток ${drinkName} отсутствует в хранилище`);
             }
+        }
+
+        document.querySelector('.get__name').onclick = function () {
+            console.log(drinkStorage.getKeys());
         }
     </script>
 </body>

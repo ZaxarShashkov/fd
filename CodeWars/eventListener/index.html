@@ -35,20 +35,41 @@
     </div>
     <script>
         let square = document.querySelector('.square');
-        console.log(square.offsetTop)
+        // console.log(square.offsetTop)
+        // window.addEventListener('keydown', (e) => {
+        //     switch (e.keyCode) {
+        //         case 87:
+        //             square.style.top = square.offsetTop - 10 + 'px';
+        //             break;
+        //         case 68:
+        //             square.style.left = square.offsetLeft + 10 + 'px';
+        //             break;
+        //         case 83:
+        //             square.style.top = square.offsetTop + 10 + 'px';
+        //             break;
+        //         case 65:
+        //             square.style.left = square.offsetLeft - 10 + 'px';
+        //             break;
+        //     }
+        // })
+
+
+        let x = 0;
+        let y = 0;
+
         window.addEventListener('keydown', (e) => {
             switch (e.keyCode) {
                 case 87:
-                    square.style.top = square.offsetTop - 1 + 'px';
-                    break;
-                case 68:
-                    square.style.left = square.offsetLeft + 1 + 'px';
+                    square.style.top = (x -= 10) + 'px';
                     break;
                 case 83:
-                    square.style.top = square.offsetTop + 1 + 'px';
+                    square.style.top = (x += 10) + 'px';
+                    break;
+                case 68:
+                    square.style.left = (y += 10) + 'px';
                     break;
                 case 65:
-                    square.style.left = square.offsetLeft - 1 + 'px';
+                    square.style.left = (y -= 10) + 'px';
                     break;
             }
         })

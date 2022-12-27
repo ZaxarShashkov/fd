@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        // N .07 Домашнее задание VOWELS
+        // Написать« чистую» функцию для эффективного подсчёта количества русских гласных букв в строке.
+        // Регулярные выражения(кто умеет) не использовать.
+        // Спросить у пользователя строку.Вывести в консоль количество русских гласных букв в ней.
+        //         с использованием метода массива forEach,
+        // с использованием метода массива filter,
+        // с использованием метода массива reduce.
+
+        let str = 'Захарий'.toLowerCase();
+        let count = '';
+        let vowel = ['й', 'е', 'у', 'ы', 'а', 'о', 'я', 'и', 'ё', 'ю', 'э'];
+
+        function vowelsFilter(str) {
+            return console.log(str.split('').sort())
+        }
+        console.log(vowelsFilter(str));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        let str = prompt('Введите строку').toLowerCase().split('');
+        let vowels = ['й', 'е', 'у', 'ы', 'а', 'о', 'я', 'и', 'ё', 'ю', 'э'];
+        let count = 0;
+
+        const forEach = str => {
+            str.forEach(element => {
+                if (vowels.includes(element)) {
+                    count++;
+                }
+            })
+            return count;
+        }
+        console.log(`forEach --- ${forEach(str)} `);
+
+        const filter = str => {
+            str = str.filter(vowel => vowels.includes(vowel));
+            return str.length;
+        }
+        console.log(`filter --- ${filter(str)}`);
+
+        const reduce = str =>
+            str.reduce((count, vowel) => {
+                if (vowels.includes(vowel))
+                    count++;
+                return count;
+            }, 0);
+        console.log(`reduce --- ${reduce(str)}`)
+
+    </script>
+</body>
+
+</html>

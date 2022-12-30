@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <form action="" class="dyn__form">
+        </form>
+    </div>
+
+
+
+    <script src="Dyn_Form.js"></script>
+    <script>
+        let dynForm = document.querySelector('.dyn__form');
+        let str = '';
+        let option = '';
+        console.log(dynForm);
+        let select = document.createElement('select');
+
+
+
+        const renderForm = form => {
+            form.forEach(key => {
+                str += `<label for="${key.name}" name="${key.name}">${key.label}</label>
+                 <input type="${key.kind}" class="${key.name}">
+                 <br> `
+                if (key.kind === 'combo') {
+                    key.variants.forEach(sub_key => {
+                        option += `<option value="${sub_key.value}">${sub_key.text}</option>`;
+                    })
+                }
+                if(key.kind === 'radio') {
+                    key.variants.forEach(sub_key => {
+                        str += `<label>${sub_key.text}</label>
+                        <input type="radio" value="${sub_key.value}">
+                        <br>
+                        `
+                    })
+                }
+            });
+            select.innerHTML = option;
+            return dynForm.innerHTML = str;
+        }
+        renderForm(form1);
+
+        const combo = document.querySelector('.division');
+        dynForm.replaceChild(select, combo);
+        const payment = document.querySelector('.payment');
+        dynForm.removeChild(payment);
+        const checkBox = document.querySelector('.votes');
+        checkBox.setAttribute('type','checkbox');
+        const textarea = document.createElement('textarea');
+        const description = document.querySelector('.description');
+        dynForm.replaceChild(textarea,description);
+        const label = document.getElementsByName('undefined');
+        console.log(label[0]);
+        dynForm.removeChild(label[0])
+        
+        
+
+       
+        
+    </script>
+</body>
+
+</html>

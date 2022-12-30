@@ -22,18 +22,20 @@
         function treeSum(arr) {
             let sum = 0;
             for (let i = 0; i < arr.length; i++) {
-                let value = arr[i]
-                // console.log('----', value)
+                let value = arr[i];
                 if (value === Number(value)) {
-                    sum += value
+                    sum += value;
                 }
                 if (Array.isArray(value)) {
-                    sum += treeSum(value)
+                    sum += treeSum(value);
                 }
             }
-            return sum
+            return sum;
         }
         console.log(treeSum(arr))
+
+        const treeSum2 = arr => arr.flat(Infinity).reduce((a,b) => a+b);
+        console.log(treeSum2(arr));
     </script>
 
 

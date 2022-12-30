@@ -10,7 +10,8 @@
 
 <body>
     <div id="app">
-        <form action="" class="dyn__form">
+        <form class="dyn__form">
+
         </form>
     </div>
 
@@ -36,7 +37,7 @@
                         option += `<option value="${sub_key.value}">${sub_key.text}</option>`;
                     })
                 }
-                if(key.kind === 'radio') {
+                if (key.kind === 'radio') {
                     key.variants.forEach(sub_key => {
                         str += `<label>${sub_key.text}</label>
                         <input type="radio" value="${sub_key.value}">
@@ -49,24 +50,24 @@
             return dynForm.innerHTML = str;
         }
         renderForm(form1);
+        renderForm(form2);
 
         const combo = document.querySelector('.division');
         dynForm.replaceChild(select, combo);
         const payment = document.querySelector('.payment');
         dynForm.removeChild(payment);
         const checkBox = document.querySelector('.votes');
-        checkBox.setAttribute('type','checkbox');
+        checkBox.setAttribute('type', 'checkbox');
         const textarea = document.createElement('textarea');
         const description = document.querySelector('.description');
-        dynForm.replaceChild(textarea,description);
+        dynForm.replaceChild(textarea, description);
         const label = document.getElementsByName('undefined');
-        console.log(label[0]);
+        console.log(label);
+        dynForm.removeChild(label[0]);
+        const label1 = document.getElementsByName('undefined');
         dynForm.removeChild(label[0])
-        
-        
-
-       
-        
+        const lastName = document.getElementsByName('lastname');
+        console.log(lastName);
     </script>
 </body>
 

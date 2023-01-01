@@ -13,8 +13,8 @@
 
 
     <script>
-        function buildWrapperH1(txt, attr, attrValue) {
-            let tag = document.createElement('h1');
+        function buildWrapperH1(elem,txt, attr, attrValue) {
+            let tag = document.createElement(elem);
             tag.textContent = txt.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll("'", '&apos;')
                 .replaceAll('<', '&lt;').replaceAll('>', '&gt;');
             let value = attrValue.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll("'", '&apos;')
@@ -22,10 +22,10 @@
             tag.setAttribute(attr, value);
             console.log(tag);
         }
-        buildWrapperH1('Zaxar < > Shashkov', 'title', 'M&M"s');
+        buildWrapperH1('div','Zaxar < > Shashkov', 'title', 'M&M"s');
 
-        function buildWrapperP(txt, attr, attrValue) {
-            let tag = document.createElement('p');
+        function buildWrapperP(elem,txt, attr, attrValue) {
+            let tag = document.createElement(elem);
             tag.textContent = txt.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll("'", '&apos;')
                 .replaceAll('<', '&lt;').replaceAll('>', '&gt;');
             let value = attrValue.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll("'", '&apos;')
@@ -33,7 +33,7 @@
             tag.setAttribute(attr, value);
             console.log(tag);
         }
-        buildWrapperP('<Вкусные M&M"s>', 'lang', 'ru');
+        buildWrapperP('span','<Вкусные M&M"s>', 'lang', 'ru');
     </script>
 </body>
 

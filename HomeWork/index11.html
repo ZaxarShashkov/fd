@@ -12,21 +12,21 @@
 
 
     <script>
-        function buildWrapperH1(txt) {
-            let tag = document.createElement('h1');
+        function buildWrapperH1(elem,txt) {
+            let tag = document.createElement(elem);
             tag.textContent = txt.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll("'", '&apos;')
                 .replaceAll('<', '&lt;').replaceAll('>', '&gt;');
             console.log(tag);
         }
-        buildWrapperH1('Zaxar < > Shashkov');
+        buildWrapperH1('li','Zaxar < > Shashkov');
 
-        function buildWrapperP(txt) {
-            let tag = document.createElement('p');
+        function buildWrapperP(elem,txt) {
+            let tag = document.createElement(elem);
             tag.textContent = txt.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll("'", '&apos;')
                 .replaceAll('<', '&lt;').replaceAll('>', '&gt;');
             console.log(tag);
         }
-        buildWrapperP('<Вкусные M&M"s>');
+        buildWrapperP('div','<Вкусные M&M"s>');
     </script>
 </body>
 

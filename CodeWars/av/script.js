@@ -31,21 +31,45 @@ let str = '';
 let carPrice = '';
 let app = document.getElementById('app');
 
-function render() {
-    for (let car of cars) {
-        str += `<div class="card" data-price="${car.price}"style="width: 18rem;>
-        <img src="${car.img}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h2 class="card-title">${car.brandTitle}</h2>
-          <p class="card-text">${car.modelTitle}</p>
-          <p class="card__price">${car.price}$</p>
-          <a href="#" class="btn btn-primary">Buy car</a>
-        </div>
-      </div>`
-    }
-    return app.innerHTML = str;
-}
+// function render() {
+//     for (let car of cars) {
+//         str += `<div class="card" data-price="${car.price}"style="width: 18rem;>
+//         <img src="${car.img}" class="card-img-top" alt="...">
+//         <div class="card-body">
+//           <h2 class="card-title">${car.brandTitle}</h2>
+//           <p class="card-text">${car.modelTitle}</p>
+//           <p class="card__price">${car.price}$</p>
+//           <a href="#" class="btn btn-primary">Buy car</a>
+//         </div>
+//       </div>`
+//     }
+//     return app.innerHTML = str;
+// }
 
+function render() {
+    const app = document.getElementById('app');
+
+    const res = cars.reduce((prev, car) => {
+        const {
+            img,
+            brandTitle,
+            modelTitle,
+            price
+        } = car;
+
+        return prev += `<div class="card" data-price="${price}"style="width: 18rem;">
+                    <img src="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">${brandTitle}</h5>
+                        <p class="card-text">${modelTitle}</p>
+                        <p class="card-text">${price}</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>`
+    }, '');
+
+    app.innerHTML = res;
+}
 
 document.querySelector('.sort__up').onclick = function () {
     sortToUp();
@@ -54,33 +78,39 @@ document.querySelector('.sort__bot').onclick = function () {
     sortToBot();
 }
 
-
 function sortToUp() {
-    for (let i = 0; i < app.children.length; i++) {
-        for (let j = i; j < app.children.length; j++) {
-            if (+app.children[i].getAttribute('data-price') > +app.children[j].getAttribute('data-price')) {
-                replacedNode = app.replaceChild(app.children[j], app.children[i]);
-                insertAfter(replacedNode, app.children[i])
-            }
-        }
-    }
+     return cars.sort((a,b) => a.price - b.price);
 }
-
 
 function sortToBot() {
-    for (let i = 0; i < app.children.length; i++) {
-        for (let j = i; j < app.children.length; j++) {
-            if (+app.children[i].getAttribute('data-price') < +app.children[j].getAttribute('data-price')) {
-                replacedNode = app.replaceChild(app.children[j], app.children[i]);
-                insertAfter(replacedNode, app.children[i])
-            }
-        }
-    }
+    return cars.sort((a,b) => b.price - a.price);
 }
+// function sortToUp() {
+//     for (let i = 0; i < app.children.length; i++) {
+//         for (let j = i; j < app.children.length; j++) {
+//             if (+app.children[i].getAttribute('data-price') > +app.children[j].getAttribute('data-price')) {
+//                 replacedNode = app.replaceChild(app.children[j], app.children[i]);
+//                 insertAfter(replacedNode, app.children[i])
+//             }
+//         }
+//     }
+// }
 
-function insertAfter(elem, refElem) {
-    return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
-}
+
+// function sortToBot() {
+//     for (let i = 0; i < app.children.length; i++) {
+//         for (let j = i; j < app.children.length; j++) {
+//             if (+app.children[i].getAttribute('data-price') < +app.children[j].getAttribute('data-price')) {
+//                 replacedNode = app.replaceChild(app.children[j], app.children[i]);
+//                 insertAfter(replacedNode, app.children[i])
+//             }
+//         }
+//     }
+// }
+
+// function insertAfter(elem, refElem) {
+//     return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
+// }
 
 
 
@@ -95,3 +125,4 @@ function getInfo() {
     });
     console.log(cars);
 }
+getInfo()

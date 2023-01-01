@@ -26,29 +26,46 @@ document.querySelector('.render').onclick = function () {
     render();
 }
 
-
-let str = '';
-let carPrice = '';
-let app = document.getElementById('app');
+document.querySelector('.sort__up').onclick = function () {
+    sortToUp();
+}
+document.querySelector('.sort__bot').onclick = function () {
+    sortToBot();
+}
 
 function render() {
-    const {
-        img,
-        brandTitle,
-        modelTitle,
-        price
-    } = car
+    const app = document.getElementById('app');
+
     const res = cars.reduce((prev, car) => {
-        return prev += `<div class="card" data-price="${car.price}"style="width: 18rem;>
-        <img src="${img}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h2 class="card-title">${brandTitle}</h2>
-          <p class="card-text">${modelTitle}</p>
-          <p class="card__price">${price}$</p>
-          <a href="#" class="btn btn-primary">Buy car</a>
-        </div>
-      </div>`
-    }, '')
+        const {
+            img,
+            name,
+            discription,
+            prise
+        } = car;
+
+        return prev += `<div class="card" style="width: 18rem;">
+                    <img src="${img}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">${brand}</h5>
+                        <p class="card-text">${discription}</p>
+                        <p class="card-text">${prise}</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>`
+    }, '');
+
+    app.innerHTML = res;
 }
+
+
+function sortToUp() {
+    const {
+        img,name,
+    }
+}
+
+
+
 
 a.price - b.price

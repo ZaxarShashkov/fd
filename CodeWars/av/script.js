@@ -79,11 +79,13 @@ document.querySelector('.sort__bot').onclick = function () {
 }
 
 function sortToUp() {
-     return cars.sort((a,b) => a.price - b.price);
+    cars.sort((a, b) => a.price - b.price);
+    render();
 }
 
 function sortToBot() {
-    return cars.sort((a,b) => b.price - a.price);
+    cars.sort((a, b) => b.price - a.price);
+    render();
 }
 // function sortToUp() {
 //     for (let i = 0; i < app.children.length; i++) {

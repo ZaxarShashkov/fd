@@ -31,3 +31,8 @@
 .cars__search {
     margin: 2rem;
 }
+
+.card {
+    display: flex;
+    gap: 5em;
+}

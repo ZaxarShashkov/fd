@@ -1,20 +1,23 @@
 const cars = [{
-    id: '',
+    id: 1,
     brandTitle: 'Audi',
     modelTitle: 'Description audi',
     img: 'https://avatars.mds.yandex.net/i?id=80578fe0019613e0dbc72c22ea33c62f-5132286-images-thumbs&ref=rim&n=33&w=337&h=188',
     price: '5000',
 }, {
+    id: 2,
     brandTitle: 'BMW',
     modelTitle: 'Description BMW',
     img: 'https://cdn.izap24.ru/images/prodacts/sourse/88718/88718856_bmw-e34-e36-nakleyka-znachok-emblema-rulevogo-kolesa.jpg"',
     price: '7000',
 }, {
+    id: 3,
     brandTitle: 'Mercedes',
     modelTitle: 'Description mercedes',
     img: 'https://i.ebayimg.com/images/g/iqEAAOSwyQtVjDf1/s-l400.jpg',
     price: '10000',
 }, {
+    id: 4,
     brandTitle: 'Volkswagen',
     modelTitle: 'Description volkswagen',
     img: 'https://5.allegroimg.com/original/0115bc/a6e4b1a64ccc8ef656dd1561fa35/CWIARTKA-Blotnik-Prawy-TYL-VW-Passat-B6-Sedan-LD5Q-Typ-samochodu-Samochody-osobowe',
@@ -22,71 +25,77 @@ const cars = [{
 }];
 
 
-document.querySelector('.render').onclick = function () {
-    render();
+const app = document.querySelector('#app');
+const render = document.querySelector('.render');
+const sortToUp = document.querySelector('.sort__up');
+const sortToBot = document.querySelector('.sort__bot');
+const setInfoBtn = document.querySelector('.btn');
+
+const card = document.querySelector('.card');
+
+
+
+const getDataId = (e) => {
+    console.log(e.target.dataset.id)
+    console.log(e.target.parentNode)
+    app.removeChild(e.target.parentNode)
+    card.appendChild(e.target.parentNode)
 }
 
-
-let str = '';
-let carPrice = '';
-let app = document.getElementById('app');
-
-// function render() {
-//     for (let car of cars) {
-//         str += `<div class="card" data-price="${car.price}"style="width: 18rem;>
-//         <img src="${car.img}" class="card-img-top" alt="...">
-//         <div class="card-body">
-//           <h2 class="card-title">${car.brandTitle}</h2>
-//           <p class="card-text">${car.modelTitle}</p>
-//           <p class="card__price">${car.price}$</p>
-//           <a href="#" class="btn btn-primary">Buy car</a>
-//         </div>
-//       </div>`
-//     }
-//     return app.innerHTML = str;
-// }
-
-function render() {
-    const app = document.getElementById('app');
-
-    const res = cars.reduce((prev, car) => {
-        const {
-            img,
-            brandTitle,
-            modelTitle,
-            price
-        } = car;
-
-        return prev += `<div class="card" data-price="${price}"style="width: 18rem;">
-                    <img src="" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">${brandTitle}</h5>
-                        <p class="card-text">${modelTitle}</p>
-                        <p class="card-text">${price}</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>`
-    }, '');
-
-    app.innerHTML = res;
+const createEl = () => {
+    const div = document.createElement('div');
+    const h5 = document.createElement('h5');
+    const p = document.createElement('p');
+    const price = document.createElement('p');
+    const btn = document.createElement('button');
+    div.appendChild(h5);
+    h5.innerText = `${car.brandTitle}`
+    div.appendChild(p);
+    p.innerText = `${car.modelTitle}`
+    div.appendChild(price)
+    price.innerText = `${car.price}`
+    div.appendChild(btn);
+    btn.innerText = 'Buy now'
+    btn.setAttribute('data-id', `${car.id}`);
+    btn.onclick = getDataId;
+    app.appendChild(div)
 }
 
-document.querySelector('.sort__up').onclick = function () {
-    sortToUp();
-}
-document.querySelector('.sort__bot').onclick = function () {
-    sortToBot();
+const renderFunc = () => {
+    for (car of cars) {
+        console.log(car)
+        createEl(car)
+    }
 }
 
-function sortToUp() {
+render.addEventListener('click', renderFunc);
+
+sortToUp.addEventListener('click', () => {
     cars.sort((a, b) => a.price - b.price);
-    render();
-}
+    renderFunc();
+})
 
-function sortToBot() {
+sortToBot.addEventListener('click', () => {
     cars.sort((a, b) => b.price - a.price);
-    render();
-}
+    renderFunc();
+})
+
+setInfoBtn.addEventListener('click', () => {
+    const brandTitle = document.querySelector('.brand').value;
+    const modelTitle = document.querySelector('.model').value;
+    const price = document.querySelector('.price').value;
+    cars.push({
+        brandTitle,
+        modelTitle,
+        price
+    });
+    renderFunc();
+})
+
+
+
+
+
 // function sortToUp() {
 //     for (let i = 0; i < app.children.length; i++) {
 //         for (let j = i; j < app.children.length; j++) {
@@ -113,18 +122,3 @@ function sortToBot() {
 // function insertAfter(elem, refElem) {
 //     return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
 // }
-
-
-
-function getInfo() {
-    const brandTitle = document.querySelector('.brand').value;
-    const modelTitle = document.querySelector('.model').value;
-    const price = document.querySelector('.price').value;
-    cars.push({
-        brandTitle,
-        modelTitle,
-        price
-    });
-    console.log(cars);
-}
-getInfo()

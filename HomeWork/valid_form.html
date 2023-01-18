@@ -6,33 +6,105 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        div {
+            display: flex;
+        }
+    </style>
 </head>
 
 <body>
 
+
     <div id="app">
-        <form action="https://fe.it-academy.by/TestForm.php" class='form' method="post"></form>
+        <form action="" class="form">
+            <div class="developers">
+                <label for="developers">Разработчики:</label>
+                <input type="text" name="developers">
+            </div>
+            <div class="name">
+                <label for="name">Название сайта:</label>
+                <input type="text" name="name">
+            </div>
+            <div class="url">
+                <label for="url">URL сайта:</label>
+                <input type="text" name="url">
+            </div>
+            <div class="date">
+                <label for="date">Дата запуска сайта:</label>
+                <input type="date" name="date">
+            </div>
+            <div class="visitors">
+                <label for="visitors">Посетителей в сутки:</label>
+                <input type="number" name="visitors">
+            </div>
+            <div class="mail">
+                <label for="mail">E-mail для связи:</label>
+                <input type="email" name="mail">
+            </div>
+            <div class="select">
+                <label for="select">Рубрика каталога</label>
+                <select name="select" id="select">
+                    <option value="1" selected>Здоровье</option>
+                    <option value="2" selected>Домашний уют</option>
+                    <option value="3" selected>Бытовая техника</option>
+                </select>
+            </div>
+            <div class="radio">
+                <label for="radio">Размещение:</label>
+                <label for="free">Бесплатное</label>
+                <input type="radio" name="Free" value="Бесплатное">
+                <label for="Paid">Платное</label>
+                <input type="radio" name="Paid" value="Платное">
+                <label for="VIP">VIP</label>
+                <input type="radio" name="VIP" value="VIP">
+            </div>
+            <div class="check">
+                <label for="check">Разрешить отзывы:</label>
+                <input type="checkbox" name="check">
+            </div>
+            <div class="text">
+                <label for="text"></label>
+                <textarea name="text" id="text" cols="40" rows="5"></textarea>
+            </div>
+            <div class="submit">
+                <input type="submit">
+            </div>
+        </form>
     </div>
 
-
-    <script src="Dyn_Form.js"></script>
-
     <script>
-        const form = document.querySelector('.form');
-        console.log(form);
-        let str = '';
+        const form = document.querySelector('.form')
+        const inputText = document.querySelectorAll('[type=text], [type=number], [type=email], [type=date]');
+        const error = document.querySelector('.error');
+        
 
 
-        const renderForm = form => {
-            form.forEach(key => {
-                console.log(key);
-                str += `<label for="${key.name}" name="${key.name}">${key.label}</label>
-                 <input type="${key.kind}" class="${key.name}">`
-            });
-            console.log(str)
-            return form.innerHTML = str;
+        const createErr = (el) => {
+            const error = document.createElement('span');
+            error.innerText = 'Введите данные';
+            error.classList.add = 'error';
+            el.style.borderColor = 'red';
+            el.parentNode.appendChild(error);
+            console.log(error);
         }
-        renderForm(form1)
+
+        const removeErr = (el) => {
+            el.style.borderColor = 'black';
+            el.parentElement.removeChild(error);
+        }
+
+        inputText.forEach(input => {
+            console.log(input.parentNode)
+            input.addEventListener('blur', () => {
+                if (!input.value) {
+                    console.log('work')
+                    return createErr(input);
+                } else if (input.value) {
+                    return removeErr(input);
+                }
+            });
+        });
     </script>
 </body>
 

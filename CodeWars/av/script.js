@@ -36,10 +36,9 @@ const card = document.querySelector('.card');
 
 
 const getDataId = (e) => {
-    console.log(e.target.dataset.id)
-    console.log(e.target.parentNode)
-    app.removeChild(e.target.parentNode)
-    card.appendChild(e.target.parentNode)
+    let target = e.target.parentNode;
+    let clone = target.cloneNode(e.target);
+    card.appendChild(clone);
 }
 
 const createEl = () => {
@@ -49,16 +48,16 @@ const createEl = () => {
     const price = document.createElement('p');
     const btn = document.createElement('button');
     div.appendChild(h5);
-    h5.innerText = `${car.brandTitle}`
+    h5.innerText = `${car.brandTitle}`;
     div.appendChild(p);
-    p.innerText = `${car.modelTitle}`
-    div.appendChild(price)
-    price.innerText = `${car.price}`
+    p.innerText = `${car.modelTitle}`;
+    div.appendChild(price);
+    price.innerText = `${car.price}`;
     div.appendChild(btn);
-    btn.innerText = 'Buy now'
+    btn.innerText = 'Buy now';
     btn.setAttribute('data-id', `${car.id}`);
     btn.onclick = getDataId;
-    app.appendChild(div)
+    app.appendChild(div);
 }
 
 const renderFunc = () => {

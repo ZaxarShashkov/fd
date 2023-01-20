@@ -10,6 +10,12 @@
         div {
             display: flex;
         }
+
+        .error {
+            font-size: 1.1em;
+            color: red;
+            font-weight: 500;
+        }
     </style>
 </head>
 
@@ -76,35 +82,38 @@
     <script>
         const form = document.querySelector('.form')
         const inputText = document.querySelectorAll('[type=text], [type=number], [type=email], [type=date]');
-        const error = document.querySelector('.error');
-        
 
 
-        const createErr = (el) => {
+        const createError = (input) => {
             const error = document.createElement('span');
-            error.innerText = 'Введите данные';
-            error.classList.add = 'error';
-            el.style.borderColor = 'red';
-            el.parentNode.appendChild(error);
-            console.log(error);
+            error.className = 'error';
+            error.innerText = 'Обязательное поле ввода';
+            input.style.borderColor = 'red';
+            input.parentNode.appendChild(error)
         }
 
-        const removeErr = (el) => {
-            el.style.borderColor = 'black';
-            el.parentElement.removeChild(error);
+        const removeError = () => {
+            const error = document.querySelectorAll('.error');
+            error.forEach((err) => {
+                console.log(err);
+                err? err.remove() : null;
+            })
         }
 
-        inputText.forEach(input => {
-            console.log(input.parentNode)
+        const validText = (input) => {
+            if (!input.value) {
+                createError(input);
+            } else {
+                removeError()
+            }
+            
+        }
+
+        inputText.forEach((input) => {
             input.addEventListener('blur', () => {
-                if (!input.value) {
-                    console.log('work')
-                    return createErr(input);
-                } else if (input.value) {
-                    return removeErr(input);
-                }
+                validText(input);
             });
-        });
+        })
     </script>
 </body>
 

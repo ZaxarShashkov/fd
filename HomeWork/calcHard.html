@@ -74,11 +74,12 @@
         const mathResult = form.elements.result;
         console.log(mathResult);
 
-        let value = [];
+        let value = ['(', 6, '-', 2, ')', '/', 4, '*', -4, '+', 5];
 
-        let sign = [];
+        let value1 = [2, '*', '(' , -3, '+' , 1 ];
 
         let result = 0;
+
 
 
         // Числа
@@ -92,27 +93,81 @@
         // Знаки
         signs.forEach(sign => {
             sign.addEventListener('click', (e) => {
-                console.log(e.target.value)
+                signArr.push(e.target.value)
+                console.log(signArr)
             })
         })
 
 
         mathResult.addEventListener('click', () => {
-            calc(value,sign)
+            
         })
 
+        console.log(value)
+
+        const calc = (value) => {
+
+            for (let i = 0; i < value.length; i++) {
+                switch (value[i]) {
+                    case '(':
+                        if (value[i + 2] == '-') {
+                            result = value[i + 1] - value[i + 3];
+                        }
+                        break;
+                        if (value[i + 2] == '+') {
+                            result = value[i + 1] + value[i + 3];
+                        }
+                        break;
+                        if (value[i + 2] == '*') {
+                            result = value[i + 1] * value[i + 3];
+                        }
+                        break;
+                        if (value[i + 2] == '/') {
+                            result = value[i + 1] / value[i + 3];
+                        };
+                        break;
+
+                    case '/':
+                        if (value[i - 1] == ')') {
+                            result /= value[i + 1];
+                        }
+                        break;
+                        if (typeof (value[i - 1]) === "number") {
+                            result = value[i - 1] / value[i + 1];
+                        }
+                        break;
+
+                    case '*':
+                        if (typeof (value[i - 2]) === "string") {
+                            result *= value[i + 1];
+                        }
+                        break;
+
+                        if (typeof (value[i - 2]) === "undefined") {
+                            result = value[i - 1] * value[i + 1];
+                        }
+                        break;
+
+                    case '+':
+                        if (typeof (value[i - 2]) === "string") {
+                            result += value[i + 1];
+                        }
+                        break;
+                        if (typeof (value[i - 2]) === "undefined") {
+                            result += value[i - 1] + value[i + 2];
+                        }
+                        break;
+
+                }
+            }
 
 
-
-
-        const calc = (value,value1) => {
-            result = value+value1;
+            // [2, '*', '(' , -3, '+' , 1 ]
+            
             console.log(result)
         }
-        calc(5,3)
-        
-
-
+        calc(value1)
+        calc(value)
     </script>
 </body>
 

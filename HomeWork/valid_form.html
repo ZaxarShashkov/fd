@@ -51,19 +51,19 @@
             <div class="select">
                 <label for="select">Рубрика каталога</label>
                 <select name="select" id="select">
-                    <option value="1" selected>Здоровье</option>
-                    <option value="2" selected>Домашний уют</option>
+                    <option value="1">Здоровье</option>
+                    <option value="2">Домашний уют</option>
                     <option value="3" selected>Бытовая техника</option>
                 </select>
             </div>
             <div class="radio">
                 <label for="radio">Размещение:</label>
                 <label for="free">Бесплатное</label>
-                <input type="radio" name="Free" value="Бесплатное">
+                <input type="radio" name="radio" value="Free">
                 <label for="Paid">Платное</label>
-                <input type="radio" name="Paid" value="Платное">
+                <input type="radio" name="radio" value="Paid">
                 <label for="VIP">VIP</label>
-                <input type="radio" name="VIP" value="VIP">
+                <input type="radio" name="radio" value="VIP">
             </div>
             <div class="check">
                 <label for="check">Разрешить отзывы:</label>
@@ -82,39 +82,89 @@
     <script>
         const form = document.querySelector('.form')
         const inputText = document.querySelectorAll('[type=text], [type=number], [type=email], [type=date]');
+        const check = form.elements.check;
+        let isChecked = check.checked = true
+        const select = form.elements.select;
+        const inputRadio = document.querySelectorAll('[type=radio]');
 
 
-        const createError = (input) => {
+        const createError = (input, msg) => {
             const error = document.createElement('span');
             error.className = 'error';
-            error.innerText = 'Обязательное поле ввода';
+            error.innerText = msg;
             input.style.borderColor = 'red';
             input.parentNode.appendChild(error)
         }
 
-        const removeError = () => {
+        const removeError = (input) => {
             const error = document.querySelectorAll('.error');
+            input.style.borderColor = 'black'
             error.forEach((err) => {
                 console.log(err);
-                err? err.remove() : null;
+                err ? err.remove() : null;
             })
         }
 
         const validText = (input) => {
             if (!input.value) {
-                createError(input);
+                createError(input, 'Обязательное поле ввода');
             } else {
-                removeError()
+                removeError(input)
             }
-            
         }
 
-        
+        const validCheck = () => {
+            let isChecked = check.checked;
+            isChecked == true ? removeError(check) : createError(check, 'Разрешите отзывы!!!')
+        }
+
+        const validSelect = () => {
+            let selectsValue = form.elements.select.value;
+            if (selectsValue == 2) {
+                removeError(select)
+                createError(select, 'Хороший выбор')
+            } else if (selectsValue == 3) {
+                removeError(select)
+                createError(select, 'Плохой выбор')
+            } else if (selectsValue == 1) {
+                removeError(select)
+                createError(select, 'Отличный выбор')
+            }
+        }
+
+
+        const validRadio = (input) => {
+            if (input.value === 'VIP') {
+                removeError(input)
+                createError(input, 'Отличный выбор')
+            } else if (input.value === 'Free') {
+                removeError(input)
+                createError(input, 'Бесплатно')
+            } else if (input.value === 'Paid') {
+                removeError(input)
+                createError(input, 'Хороший выбор')
+            }
+        }
+
+
+
+
+        // event's
+
+        select.addEventListener('change', validSelect);
+
+        check.addEventListener('change', validCheck);
 
         inputText.forEach((input) => {
             input.addEventListener('blur', () => {
                 validText(input);
             });
+        })
+
+        inputRadio.forEach((input) => {
+            input.addEventListener('change', () => {
+                validRadio(input);
+            })
         })
     </script>
 </body>

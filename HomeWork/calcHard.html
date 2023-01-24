@@ -41,8 +41,8 @@
             <form action="" class="form">
                 <div class="row_1">
                     <input type="button" value="AC">
-                    <input type="button" name='sign' value="(">
-                    <input type="button" name='sign' value=")">
+                    <input type="button" name='bkt' value="(">
+                    <input type="button" name='bkt' value=")">
                     <input type="button" name='sign' value="/">
                 </div>
                 <div class="row_1">
@@ -78,7 +78,8 @@
         const signs = form.elements.sign;
         const numbers = form.elements.number;
         const signResult = form.elements.result;
-        console.log(signResult);
+        const bkt = form.elements.bkt;
+
 
 
         let a = '';
@@ -88,7 +89,36 @@
         let sign2 = '';
         let signNum = ''
         let result = '';
-        console.log(sign);
+
+        let bktOpenFirst = '';
+        let bktOpenSecond = '';
+        let bktClose = '';
+
+
+        bkt.forEach(elem => {
+            elem.addEventListener('click', () => {
+                if (a === '') {
+                    bktOpenFirst += elem.value
+                    console.log('bktOpenFirst:', bktOpenFirst);
+                    console.log('bktOpenSecond:', bktOpenSecond);
+                    console.log('bktClose', bktClose)
+                    console.log('---------')
+                } else if (a !== '' && b === '') {
+                    bktOpenSecond += elem.value
+                    console.log('bktOpenFirst:', bktOpenFirst);
+                    console.log('bktOpenSecond:', bktOpenSecond);
+                    console.log('bktClose', bktClose)
+                    console.log('---------')
+                } else if (bktOpenFirst !== '' || bktOpenSecond !== '') {
+                    bktClose += elem.value;
+                    console.log('bktOpenFirst:', bktOpenFirst);
+                    console.log('bktOpenSecond:', bktOpenSecond);
+                    console.log('bktClose', bktClose)
+                    console.log('---------')
+                }
+            })
+        })
+
 
         numbers.forEach(number => {
             number.addEventListener(('click'), () => {
@@ -124,10 +154,11 @@
                 } else if (sign2 !== '') {
                     c += elem.value;
                     console.log('c:', c);
-                } 
+                }
 
             })
         })
+
 
         signResult.addEventListener('click', () => {
             switch (sign) {

@@ -35,7 +35,7 @@
 
 <body>
     <div id="app">
-
+        <p>Переменные в консоле</p>
         <div class="calc">
             <div class="result"></div>
             <form action="" class="form">
@@ -74,8 +74,6 @@
 
 
     <script>
-
-
         // Все значения в консоле !!!
 
         const form = document.querySelector('.form')
@@ -98,6 +96,7 @@
             bktOpenFirst = '';
             bktOpenSecond = '';
             bktClose = '';
+            divResult.innerText = 0;
         })
 
 
@@ -220,6 +219,10 @@
                         result += (+a) * ((+b) + (+c));
                     } else if (bktOpenSecond !== '' && sign2 === '-') {
                         result += (+a) * ((+b) - (+c));
+                    } else if (bktOpenSecond !== '' && sign2 === '*') {
+                        result += (+a) * ((+b) * (+c));
+                    } else if (bktOpenSecond !== '' && sign2 === '/') {
+                        result += (+a) * ((+b) / (+c));
                     } else if (c != '' && sign2 === '*') {
                         result += (+a) * (+b) * (+c);
                     } else if (c != '' && sign2 === '/') {
@@ -233,10 +236,14 @@
                 case '/':
                     if (c === '') {
                         result = (+a) / (+b);
-                    } else if (bktOpenSecond !== '' && sign === '+') {
-                        result += (+a) * ((+b) + (+c));
-                    } else if (bktOpenSecond !== '' && sign === '-') {
-                        result += (+a) * ((+b) - (+c));
+                    } else if (bktOpenSecond !== '' && sign2 === '+') {
+                        result += (+a) / ((+b) + (+c));
+                    } else if (bktOpenSecond !== '' && sign2 === '-') {
+                        result += (+a) / ((+b) - (+c));
+                    } else if (bktOpenSecond !== '' && sign2 === '*') {
+                        result += (+a) / ((+b) * (+c));
+                    } else if (bktOpenSecond !== '' && sign2 === '*') {
+                        result += (+a) / ((+b) * (+c));
                     } else if (c != '' && sign2 === '-') {
                         result += (+a) / (+b) - (+c);
                     } else if (c != '' && sign2 === '*') {

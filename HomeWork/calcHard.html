@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app {
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-content: centers;
+        }
+
+        .calc {
+            display: grid;
+            grid-template-rows: repeat(5, 1fr);
+            justify-content: center;
+            margin-top: 10em;
+        }
+
+        .result {
+            width: 130px;
+            height: 25px;
+            border: 1px solid black;
+        }
+
+        input {
+            width: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <div class="calc">
+            <div class="result"></div>
+            <form action="" class="form">
+                <div class="row_1">
+                    <input type="button" value="AC">
+                    <input type="button" name='sign' value="(">
+                    <input type="button" name='sign' value=")">
+                    <input type="button" name='sign' value="/">
+                </div>
+                <div class="row_1">
+                    <input type="button" name='number' value="7">
+                    <input type="button" name='number' value="8">
+                    <input type="button" name='number' value="9">
+                    <input type="button" name='sign' value="*">
+                </div>
+                <div class="row_1">
+                    <input type="button" name='number' value="4">
+                    <input type="button" name='number' value="5">
+                    <input type="button" name='number' value="6">
+                    <input type="button" name='sign' value="-">
+                </div>
+                <div class="row_1">
+                    <input type="button" name='number' value="1">
+                    <input type="button" name='number' value="2">
+                    <input type="button" name='number' value="3">
+                    <input type="button" name='sign' value="+">
+                </div>
+                <div class="row_1">
+                    <input type="button" name='number' value="0">
+                    <input type="button" name="number" value=".">
+                    <input type="button" name='result' value="=">
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        const form = document.querySelector('.form')
+        const signs = form.elements.sign;
+        const numbers = form.elements.number;
+        const signResult = form.elements.result;
+        console.log(signResult);
+
+
+        let a = '';
+        let b = '';
+        let c = '';
+        let sign = '';
+        let sign2 = '';
+        let signNum = ''
+        let result = '';
+        console.log(sign);
+
+        numbers.forEach(number => {
+            number.addEventListener(('click'), () => {
+                if (sign === '') {
+                    a += number.value;
+                    console.log('a:', a);
+                }
+                if (sign !== '' && sign2 === '') {
+                    b += number.value;
+                    console.log('b:', b)
+                }
+                if (sign2 !== '') {
+                    c += number.value;
+                    console.log('c:', c);
+                }
+            })
+        })
+
+        signs.forEach(elem => {
+            elem.addEventListener('click', () => {
+                if (a === '') {
+                    a += elem.value;
+                    console.log('a:', a);
+                } else if (sign === '' && a !== '') {
+                    sign = elem.value;
+                    console.log('sign:', sign);
+                } else if (sign !== '' && b === '') {
+                    b += elem.value;
+                    console.log('b:', b);
+                } else if (sign !== '' && sign2 === '') {
+                    sign2 = elem.value;
+                    console.log('sign2', sign2);
+                } else if (sign2 !== '') {
+                    c += elem.value;
+                    console.log('c:', c);
+                } 
+
+            })
+        })
+
+        signResult.addEventListener('click', () => {
+            switch (sign) {
+                case '+':
+                    if (c === '') {
+                        result += (+a) + (+b);
+                    }
+                    if (c != '' && sign2 === '-') {
+                        result += (+a) + (+b) - (+c);
+                    }
+                    if (c != '' && sign2 === '*') {
+                        result += (+a) + (+b) * (+c);
+                    }
+                    if (c != '' && sign2 === '/') {
+                        result += (+a) + (+b) / (+c);
+                    }
+                    if (c != '' && sign2 === '+') {
+                        result += (+a) + (+b) + (+c);
+                    }
+                    console.log(result);
+                    break;
+                case '-':
+                    if (c === '') {
+                        result = (+a) - (+b)
+                    }
+                    if (c != '' && sign2 === '-') {
+                        result += (+a) - (+b) - (+c);
+                    }
+                    if (c != '' && sign2 === '*') {
+                        result += (+a) - (+b) * (+c);
+                    }
+                    if (c != '' && sign2 === '/') {
+                        result += (+a) - (+b) / (+c);
+                    }
+                    if (c != '' && sign2 === '+') {
+                        result += (+a) - (+b) + (+c);
+                    }
+                    console.log(result);
+                    break;
+                case '*':
+                    if (c === '') {
+                        result = +a * +b;
+                    }
+                    if (c != '' && sign2 === '-') {
+                        result += (+a) * (+b) - (+c);
+                    }
+                    if (c != '' && sign2 === '*') {
+                        result += (+a) * (+b) * (+c);
+                    }
+                    if (c != '' && sign2 === '/') {
+                        result += +a * (+b) / (+c);
+                    }
+                    if (c != '' && sign2 === '+') {
+                        result += (+a) * (+b) + (+c);
+                    }
+                    console.log(result);
+                    break;
+                case '/':
+                    if (c === '') {
+                        result = (+a) / (+b);
+                    }
+                    if (c != '' && sign2 === '-') {
+                        result += (+a) / (+b) - (+c);
+                    }
+                    if (c != '' && sign2 === '*') {
+                        result += (+a) / (+b) * (+c);
+                    }
+                    if (c != '' && sign2 === '/') {
+                        result += +a / (+b) / (+c);
+                    }
+                    if (c != '' && sign2 === '+') {
+                        result += (+a) / (+b) + (+c);
+                    }
+                    console.log(result);
+                    break;
+            }
+        })
+    </script>
+</body>
+
+</html>

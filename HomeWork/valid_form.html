@@ -43,6 +43,7 @@
             <div class="visitors">
                 <label for="visitors">Посетителей в сутки:</label>
                 <input type="number" name="visitors">
+                <span class="error"></span>
             </div>
             <div class="mail">
                 <label for="mail">E-mail для связи:</label>
@@ -52,8 +53,8 @@
                 <label for="select">Рубрика каталога</label>
                 <select name="select" id="select">
                     <option value="1">Здоровье</option>
-                    <option value="2">Домашний уют</option>
-                    <option value="3" selected>Бытовая техника</option>
+                    <option value="2" selected>Домашний уют</option>
+                    <option value="3">Бытовая техника</option>
                 </select>
             </div>
             <div class="radio">
@@ -88,7 +89,6 @@
         const inputRadio = document.querySelectorAll('[type=radio]');
         const textArea = document.querySelector('#text')
         const button = document.querySelector('[type=button]');
-        console.log(textArea.value);
 
 
         const createError = (input, msg) => {
@@ -102,10 +102,13 @@
         const removeError = (input) => {
             const error = document.querySelectorAll('.error');
             input.style.borderColor = 'black'
-            error.forEach((err) => {
-                console.log(err);
-                err ? err.remove() : null;
-            })
+            if (input.value !== '') {
+                error.forEach((err) => {
+                    console.log(err);
+                    err ? err.remove() : null;
+                })
+            }
+
         }
 
         const validText = (input) => {
@@ -123,37 +126,25 @@
 
         const validSelect = () => {
             let selectsValue = form.elements.select.value;
-            if (selectsValue == 2) {
-                removeError(select)
-                createError(select, 'Хороший выбор')
-            } else if (selectsValue == 3) {
-                removeError(select)
-                createError(select, 'Плохой выбор')
-            } else if (selectsValue == 1) {
-                removeError(select)
-                createError(select, 'Отличный выбор')
+            if (selectsValue == 3) {
+                createError(select, 'Измените выбор')
+            } else {
+                removeError(select);
             }
         }
 
 
         const validRadio = (input) => {
-            if (input.value === 'VIP') {
-                removeError(input)
-                createError(input, 'Отличный выбор')
-            } else if (input.value === 'Free') {
-                removeError(input)
-                createError(input, 'Бесплатно')
-            } else if (input.value === 'Paid') {
-                removeError(input)
-                createError(input, 'Хороший выбор')
-            } else if (input.value === '') {
-                createError(input[0].parentElement, 'Сделайте выбор')
-            } 
+            if (input.value === 'Free') {
+                createError(input, 'Выберите платный тариф');
+            } else {
+                removeError(input);
+            }
         }
 
         const validTextArea = () => {
-            if(textArea.value === '') {
-                createError(textArea,'Оставьте отзыв');
+            if (textArea.value === '') {
+                createError(textArea, 'Оставьте отзыв');
             } else {
                 removeError(textArea);
             }
@@ -174,7 +165,7 @@
             validSelect()
             validCheck()
             validTextArea()
-            
+
         })
 
         select.addEventListener('change', validSelect);

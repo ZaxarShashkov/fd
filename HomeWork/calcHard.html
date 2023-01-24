@@ -17,12 +17,12 @@
             display: grid;
             grid-template-rows: repeat(5, 1fr);
             justify-content: center;
-            margin-top: 10em;
+            margin-top: 0.5em;
         }
 
         .result {
             width: 130px;
-            height: 25px;
+            height: 70px;
             border: 1px solid black;
         }
 
@@ -155,7 +155,6 @@
                     c += elem.value;
                     console.log('c:', c);
                 }
-
             })
         })
 
@@ -165,35 +164,36 @@
                 case '+':
                     if (c === '') {
                         result += (+a) + (+b);
-                    }
-                    if (c != '' && sign2 === '-') {
+                    } else if (c != '' && sign2 === '-') {
                         result += (+a) + (+b) - (+c);
-                    }
-                    if (c != '' && sign2 === '*') {
+                    } else if (bktOpenFirst !== '' && sign2 === '*') {
+                        result += ((+a) + (+b)) * (+c);
+                    } else if (bktOpenFirst !== '' && sign2 === '/') {
+                        result += ((+a) + (+b)) / (+c);
+                    } else if (c != '' && sign2 === '*') {
                         result += (+a) + (+b) * (+c);
-                    }
-                    if (c != '' && sign2 === '/') {
+                    } else if (c != '' && sign2 === '/') {
                         result += (+a) + (+b) / (+c);
-                    }
-                    if (c != '' && sign2 === '+') {
+                    } else if (c != '' && sign2 === '+') {
                         result += (+a) + (+b) + (+c);
                     }
+
                     console.log(result);
                     break;
                 case '-':
                     if (c === '') {
                         result = (+a) - (+b)
-                    }
-                    if (c != '' && sign2 === '-') {
+                    } else if (c != '' && sign2 === '-') {
                         result += (+a) - (+b) - (+c);
-                    }
-                    if (c != '' && sign2 === '*') {
+                    } else if (bktOpenFirst !== '' && sign2 === '*') {
+                        result += ((+a) - (+b)) * (+c);
+                    } else if (bktOpenFirst !== '' && sign2 === '/') {
+                        result += ((+a) - (+b)) / (+c);
+                    } else if (c != '' && sign2 === '*') {
                         result += (+a) - (+b) * (+c);
-                    }
-                    if (c != '' && sign2 === '/') {
+                    } else if (c != '' && sign2 === '/') {
                         result += (+a) - (+b) / (+c);
-                    }
-                    if (c != '' && sign2 === '+') {
+                    } else if (c != '' && sign2 === '+') {
                         result += (+a) - (+b) + (+c);
                     }
                     console.log(result);
@@ -201,17 +201,17 @@
                 case '*':
                     if (c === '') {
                         result = +a * +b;
-                    }
-                    if (c != '' && sign2 === '-') {
+                    } else if (c != '' && sign2 === '-') {
                         result += (+a) * (+b) - (+c);
-                    }
-                    if (c != '' && sign2 === '*') {
+                    } else if (bktOpenSecond !== '' && sign2 === '+') {
+                        result += (+a) * ((+b) + (+c));
+                    } else if (bktOpenSecond !== '' && sign2 === '-') {
+                        result += (+a) * ((+b) - (+c));
+                    } else if (c != '' && sign2 === '*') {
                         result += (+a) * (+b) * (+c);
-                    }
-                    if (c != '' && sign2 === '/') {
+                    } else if (c != '' && sign2 === '/') {
                         result += +a * (+b) / (+c);
-                    }
-                    if (c != '' && sign2 === '+') {
+                    } else if (c != '' && sign2 === '+') {
                         result += (+a) * (+b) + (+c);
                     }
                     console.log(result);
@@ -219,17 +219,17 @@
                 case '/':
                     if (c === '') {
                         result = (+a) / (+b);
-                    }
-                    if (c != '' && sign2 === '-') {
+                    } else if (bktOpenSecond !== '' && sign === '+') {
+                        result += (+a) * ((+b) + (+c));
+                    } else if (bktOpenSecond !== '' && sign === '-') {
+                        result += (+a) * ((+b) - (+c));
+                    } else if (c != '' && sign2 === '-') {
                         result += (+a) / (+b) - (+c);
-                    }
-                    if (c != '' && sign2 === '*') {
+                    } else if (c != '' && sign2 === '*') {
                         result += (+a) / (+b) * (+c);
-                    }
-                    if (c != '' && sign2 === '/') {
+                    } else if (c != '' && sign2 === '/') {
                         result += +a / (+b) / (+c);
-                    }
-                    if (c != '' && sign2 === '+') {
+                    } else if (c != '' && sign2 === '+') {
                         result += (+a) / (+b) + (+c);
                     }
                     console.log(result);

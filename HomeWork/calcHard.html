@@ -40,7 +40,7 @@
             <div class="result"></div>
             <form action="" class="form">
                 <div class="row_1">
-                    <input type="button" value="AC">
+                    <input type="reset" name="ac" value="AC">
                     <input type="button" name='bkt' value="(">
                     <input type="button" name='bkt' value=")">
                     <input type="button" name='sign' value="/">
@@ -74,11 +74,31 @@
 
 
     <script>
+
+
+        // Все значения в консоле !!!
+
         const form = document.querySelector('.form')
         const signs = form.elements.sign;
         const numbers = form.elements.number;
         const signResult = form.elements.result;
         const bkt = form.elements.bkt;
+        const divResult = document.querySelector(".result")
+        const ac = form.elements.ac;
+
+        ac.addEventListener('click', () => {
+            a = '';
+            b = '';
+            c = '';
+            sign = '';
+            sign2 = '';
+            signNum = ''
+            result = '';
+
+            bktOpenFirst = '';
+            bktOpenSecond = '';
+            bktClose = '';
+        })
 
 
 
@@ -100,22 +120,14 @@
                 if (a === '') {
                     bktOpenFirst += elem.value
                     console.log('bktOpenFirst:', bktOpenFirst);
-                    console.log('bktOpenSecond:', bktOpenSecond);
-                    console.log('bktClose', bktClose)
-                    console.log('---------')
                 } else if (a !== '' && b === '') {
                     bktOpenSecond += elem.value
                     console.log('bktOpenFirst:', bktOpenFirst);
-                    console.log('bktOpenSecond:', bktOpenSecond);
-                    console.log('bktClose', bktClose)
-                    console.log('---------')
                 } else if (bktOpenFirst !== '' || bktOpenSecond !== '') {
                     bktClose += elem.value;
-                    console.log('bktOpenFirst:', bktOpenFirst);
-                    console.log('bktOpenSecond:', bktOpenSecond);
                     console.log('bktClose', bktClose)
-                    console.log('---------')
                 }
+
             })
         })
 
@@ -177,7 +189,7 @@
                     } else if (c != '' && sign2 === '+') {
                         result += (+a) + (+b) + (+c);
                     }
-
+                    divResult.innerText = result
                     console.log(result);
                     break;
                 case '-':
@@ -197,6 +209,7 @@
                         result += (+a) - (+b) + (+c);
                     }
                     console.log(result);
+                    divResult.innerText = result;
                     break;
                 case '*':
                     if (c === '') {
@@ -215,6 +228,7 @@
                         result += (+a) * (+b) + (+c);
                     }
                     console.log(result);
+                    divResult.innerText = result;
                     break;
                 case '/':
                     if (c === '') {
@@ -233,6 +247,7 @@
                         result += (+a) / (+b) + (+c);
                     }
                     console.log(result);
+                    divResult.innerText = result;
                     break;
             }
         })

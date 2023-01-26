@@ -38,7 +38,7 @@
             </div>
             <div class="date">
                 <label for="date">Дата запуска сайта:</label>
-                <input type="date" name="date">
+                <input type="date" name="date" value="2023-01-26" max="2023-12-31">
             </div>
             <div class="visitors">
                 <label for="visitors">Посетителей в сутки:</label>
@@ -72,7 +72,7 @@
             </div>
             <div class="text">
                 <label for="text"></label>
-                <textarea name="text" id="text" cols="40" rows="5"></textarea>
+                <textarea name="feedback" id="text" cols="40" rows="5"></textarea>
             </div>
             <div class="button">
                 <input type="button" value="Отправить">
@@ -81,106 +81,116 @@
     </div>
 
     <script>
-        const form = document.querySelector('.form')
-        const inputText = document.querySelectorAll('[type=text], [type=number], [type=email], [type=date]');
-        const check = form.elements.check;
-        let isChecked = check.checked = true
-        const select = form.elements.select;
+        const form = document.querySelector('.form');
+        const inputText = document.querySelectorAll('[type=text], [type=email]');
         const inputRadio = document.querySelectorAll('[type=radio]');
-        const textArea = document.querySelector('#text')
+
+        const visitors = form.elements.visitors;
+        const date = form.elements.date;
+        const select = form.elements.select;
+        const check = form.elements.check;
+        const feedBack = form.elements.feedback;
+
         const button = document.querySelector('[type=button]');
 
 
-        const createError = (input, msg) => {
+
+        const createError = (input, message) => {
+            input.style.borderColor = 'red';
             const error = document.createElement('span');
             error.className = 'error';
-            error.innerText = msg;
-            input.style.borderColor = 'red';
-            input.parentNode.appendChild(error)
+            error.innerText = message;
+            const parentElement = input.parentElement;
+            parentElement.appendChild(error);
         }
 
         const removeError = (input) => {
-            const error = document.querySelectorAll('.error');
-            input.style.borderColor = 'black'
-            if (input.value !== '') {
-                error.forEach((err) => {
-                    console.log(err);
-                    err ? err.remove() : null;
-                })
-            }
-
+            const error = document.querySelector('.error');
+            input.style.borderColor = 'black';
+            error ? error.remove() : null;
         }
 
-        const validText = (input) => {
-            if (!input.value) {
-                createError(input, 'Обязательное поле ввода');
+        
+
+        // Обработчики событий
+
+        button.addEventListener('click', () => {
+
+        })
+
+        // Пустое поле === error
+
+        feedBack.addEventListener('blur', () => {
+            if (feedBack.value === '') {
+                createError(feedBack, 'Оставьте отзыв!');
             } else {
-                removeError(input)
+                removeError(feedBack);
             }
-        }
+        })
 
-        const validCheck = () => {
-            let isChecked = check.checked;
-            isChecked == true ? removeError(check) : createError(check, 'Разрешите отзывы!!!')
-        }
+        // checked === true
 
-        const validSelect = () => {
-            let selectsValue = form.elements.select.value;
-            if (selectsValue == 3) {
-                createError(select, 'Измените выбор')
+        check.addEventListener('change', () => {
+            const isChecked = check.checked;
+            if (!isChecked) {
+                return createError(check, 'Разрешите отзывы');
+            } else {
+                return removeError(check);
+            }
+        })
+
+
+        // free === error 
+
+        inputRadio.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'Free') {
+                    createError(radio, 'Бесплатная раздача окончена');
+                } else {
+                    removeError(radio);
+                }
+            })
+        })
+
+        // value 3 == error
+
+        select.addEventListener('change', () => {
+            if (select.value == 3) {
+                createError(select, 'Не лучший выбор');
             } else {
                 removeError(select);
             }
-        }
-
-
-        const validRadio = (input) => {
-            if (input.value === 'Free') {
-                createError(input, 'Выберите платный тариф');
-            } else {
-                removeError(input);
-            }
-        }
-
-        const validTextArea = () => {
-            if (textArea.value === '') {
-                createError(textArea, 'Оставьте отзыв');
-            } else {
-                removeError(textArea);
-            }
-        }
-
-        textArea.addEventListener('blur', validTextArea)
-
-
-        // event's
-
-        button.addEventListener('click', () => {
-            inputText.forEach((input) => {
-                validText(input)
-            })
-            inputRadio.forEach((input) => {
-                validRadio(input)
-            })
-            validSelect()
-            validCheck()
-            validTextArea()
-
         })
 
-        select.addEventListener('change', validSelect);
+        // Посещаемость до 10к;
 
-        check.addEventListener('change', validCheck);
+        visitors.addEventListener('blur', () => {
+            if (visitors.value > 10000) {
+                createError(visitors, 'Посещаемость до 10к')
+            } else if (visitors.value < 10000) {
+                removeError(visitors);
+            }
+        })
 
-        inputText.forEach((input) => {
+        // Дата < data.value
+
+        date.addEventListener('change', () => {
+            if (date.valueAsNumber > 1674691200000) {
+                return createError(date, 'Дата должна быть меньше текущей');
+            } else if (date.valueAsNumber < 1674691200000) {
+                removeError(date);
+            }
+        })
+
+        // Пустое поле === error
+
+        inputText.forEach(input => {
             input.addEventListener('blur', () => {
-                validText(input);
-            });
-        })
-
-        inputRadio.forEach((input) => {
-            input.addEventListener('change', () => {
-                validRadio(input);
+                if (input.value === '') {
+                    createError(input, 'Обязательное поле ввода');
+                } else if (input.value !== '') {
+                    removeError(input);
+                }
             })
         })
     </script>

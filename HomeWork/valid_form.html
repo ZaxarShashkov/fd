@@ -110,87 +110,131 @@
             error ? error.remove() : null;
         }
 
-        
-
-        // Обработчики событий
-
-        button.addEventListener('click', () => {
-
-        })
-
         // Пустое поле === error
 
-        feedBack.addEventListener('blur', () => {
-            if (feedBack.value === '') {
-                createError(feedBack, 'Оставьте отзыв!');
-            } else {
-                removeError(feedBack);
+        const validText = (input) => {
+            if (input.value === '') {
+                createError(input, 'Обязательное поле ввода');
+            } else if (input.value !== '') {
+                removeError(input);
             }
-        })
+        }
+
+        // Дата < data.value
+
+        const validDate = () => {
+            if (date.valueAsNumber > 1674691100000) {
+                return createError(date, 'Дата должна быть меньше текущей');
+            } else if (date.valueAsNumber < 1674691200000) {
+                removeError(date);
+            }
+        }
+
+        // visitors > 10000 == true;
+
+        const validVisitors = () => {
+            if (visitors.value < 10000) {
+                createError(visitors, 'Посещаемость до 10к')
+            } else if (visitors.value > 10000) {
+                removeError(visitors);
+            }
+        }
+
+        // value 3 == error
+
+        const validSelect = () => {
+            if (select.value == 3) {
+                createError(select, 'Не лучший выбор');
+            } else {
+                removeError(select);
+            }
+        }
+
+
+        // free === false 
+
+        const validRadio = (input) => {
+            if (input.value === 'Free') {
+                createError(input, 'Бесплатная раздача окончена');
+            } else {
+                removeError(input);
+            }
+        }
 
         // checked === true
 
-        check.addEventListener('change', () => {
+        const validCheck = () => {
             const isChecked = check.checked;
             if (!isChecked) {
                 return createError(check, 'Разрешите отзывы');
             } else {
                 return removeError(check);
             }
-        })
-
-
-        // free === error 
-
-        inputRadio.forEach(radio => {
-            radio.addEventListener('change', () => {
-                if (radio.value === 'Free') {
-                    createError(radio, 'Бесплатная раздача окончена');
-                } else {
-                    removeError(radio);
-                }
-            })
-        })
-
-        // value 3 == error
-
-        select.addEventListener('change', () => {
-            if (select.value == 3) {
-                createError(select, 'Не лучший выбор');
-            } else {
-                removeError(select);
-            }
-        })
-
-        // Посещаемость до 10к;
-
-        visitors.addEventListener('blur', () => {
-            if (visitors.value > 10000) {
-                createError(visitors, 'Посещаемость до 10к')
-            } else if (visitors.value < 10000) {
-                removeError(visitors);
-            }
-        })
-
-        // Дата < data.value
-
-        date.addEventListener('change', () => {
-            if (date.valueAsNumber > 1674691200000) {
-                return createError(date, 'Дата должна быть меньше текущей');
-            } else if (date.valueAsNumber < 1674691200000) {
-                removeError(date);
-            }
-        })
+        }
 
         // Пустое поле === error
 
+        const validFeedBack = () => {
+            if (feedBack.value === '') {
+                createError(feedBack, 'Оставьте отзыв!');
+            } else {
+                removeError(feedBack);
+            }
+        }
+
+
+        // Обработчики событий
+
+        button.addEventListener('click', () => {
+            validFeedBack();
+            validCheck();
+            validSelect();
+            validVisitors();
+            validDate();
+            inputText.forEach(input => {
+                validText(input);
+            });
+            inputRadio.forEach(input => {
+                validRadio(input);
+            })
+        })
+
+
+        feedBack.addEventListener('blur', () => {
+            validFeedBack();
+        })
+
+
+        check.addEventListener('change', () => {
+            validCheck();
+        })
+
+
+        inputRadio.forEach(input => {
+            input.addEventListener('change', () => {
+                validRadio(input);
+            })
+        })
+
+
+        select.addEventListener('change', () => {
+            validSelect();
+        })
+
+
+        visitors.addEventListener('blur', () => {
+            validVisitors();
+        })
+
+
+        date.addEventListener('change', () => {
+            validDate();
+        })
+
+
         inputText.forEach(input => {
             input.addEventListener('blur', () => {
-                if (input.value === '') {
-                    createError(input, 'Обязательное поле ввода');
-                } else if (input.value !== '') {
-                    removeError(input);
-                }
+                validText(input);
             })
         })
     </script>

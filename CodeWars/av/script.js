@@ -33,11 +33,11 @@ const setInfoBtn = document.querySelector('.btn');
 
 const card = document.querySelector('.card');
 
-
-
 const getDataId = (e) => {
     let target = e.target.parentNode;
     let clone = target.cloneNode(e.target);
+    localStorage.setItem('id', e.target.dataset.id)
+    console.log(e.target.dataset.id);
     card.appendChild(clone);
 }
 
@@ -61,8 +61,8 @@ const createEl = () => {
 }
 
 const renderFunc = () => {
+    localStorage.setItem('cars', JSON.stringify(cars));
     for (car of cars) {
-        console.log(car)
         createEl(car)
     }
 }

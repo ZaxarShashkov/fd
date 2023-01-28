@@ -61,10 +61,10 @@ const createEl = () => {
 }
 
 const renderFunc = () => {
-    localStorage.setItem('cars', JSON.stringify(cars));
     for (car of cars) {
         createEl(car)
     }
+    localStorage.setItem('cars', JSON.stringify(cars));
 }
 
 render.addEventListener('click', renderFunc);

@@ -25,6 +25,7 @@ body {
     width: 10px;
     height: 60px;
     background: green;
+    transform: translateZ(0);
 }
 
 .racquet2 {
@@ -33,12 +34,14 @@ body {
     height: 60px;
     background: blue;
     left: 387px;
+    transform: translateZ(0);
 }
 
 .ball {
     position: absolute;
-    width: 15px;
-    height: 15px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     background: yellow;
+    transform: translateZ(0);
 }

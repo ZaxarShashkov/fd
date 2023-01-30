@@ -1,12 +1,9 @@
 const app = document.querySelector('#app');
-let isMovingLeft;
-let isMovingBot;
 
 let ballY = 90;
 let ballX = 190;
 
-
-
+let isGameOver = true;
 
 const table = document.createElement('div');
 table.className = 'table';
@@ -45,55 +42,40 @@ window.addEventListener('keydown', (e) => {
             racquet2.style.top = (y += 5) + 'px';
             break;
     }
-})
+});
+
+let isMovingLeft;
+let isMovingRight;
 
 
-
-// transform: translate
 
 const moveLeft = () => {
-    const ball = document.querySelector('.ball')
-    window.cancelAnimationFrame(moveDown);
-    isMovingLeft = true;
-    ballY += 0.2;
-    ballX -= 0.2;
-    ball.style.transform = `translate(${ballX}px, ${ballY}px)`;
-    if (ballY >= 180) {
-        window.requestAnimationFrame(moveUp);
-    }
-    window.requestAnimationFrame(moveLeft);
-}
-window.requestAnimationFrame(moveLeft);
-
-const moveUp = () => {
-    window.cancelAnimationFrame(moveLeft)
-    ballY -= 0.2;
-    ballX -= 0.5;
+    ballY += 0;
+    ballX -= 1;
     ball.style.transform = `translate(${ballX}px, ${ballY}px)`;
     if (ballX <= 0) {
-        window.requestAnimationFrame(moveRight)
+        window.cancelAnimationFrame(isMovingLeft);
+        isMovingRight = window.requestAnimationFrame(moveRight);
     }
-    window.requestAnimationFrame(moveUp);
+    isMovingLeft = window.requestAnimationFrame(moveLeft);
 }
+
 
 const moveRight = () => {
-    window.cancelAnimationFrame(moveUp);
-    ballY -= 0.2;
-    ballX += 0.2;
+    ballY += 0;
+    ballX += 1;
     ball.style.transform = `translate(${ballX}px, ${ballY}px)`;
-    if (ballY <= 0) {
-        window.requestAnimationFrame(moveDown)
+    if (ballX >= 380) {
+        window.cancelAnimationFrame(isMovingRight);
+        isMovingLeft = window.requestAnimationFrame(moveLeft);
     }
-    window.requestAnimationFrame(moveRight);
+    isMovingRight = window.requestAnimationFrame(moveRight);
 }
 
-const moveDown = () => {
-    window.cancelAnimationFrame(moveRight);
-    ballY += 0.2;
-    ballX += 0.2;
-    ball.style.transform = `translate(${ballX}px, ${ballY}px)`;
-    if(ballX >= 400) {
-        window.requestAnimationFrame(moveLeft);
-    }
-    window.requestAnimationFrame(moveDown)
+
+
+const start = () => {
+    isGameOver = false;
+    isMovingRight = window.requestAnimationFrame(moveRight);
 }
+start()

@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    position: relative;
+    background-image: url(img/bck.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 400px;
+    height: 650px;
+    margin: 0 auto;
+    overflow-y: hidden;
+}

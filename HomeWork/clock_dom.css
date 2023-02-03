@@ -22,12 +22,37 @@ body {
 .block_numbers {
     width: 30px;
     height: 30px;
-    background: green;
+    background: transparent;
     border-radius: 50%;
     position: absolute;
 }
 
 .numbers {
     font-size: 1em;
+    text-align: center; 
+}
+.number {
+    font-size: 1.5em;
     text-align: center;
+}
+
+.hours_arrow {
+    position: absolute;
+    width: 15px;
+    height: 120px;
+    background-color: #000;
+}
+
+.minutes_arrow {
+    position: absolute;
+    width: 10px;
+    height: 135px;
+    background-color: #000;
+}
+
+.seconds_arrow {
+    position: absolute;
+    width: 7px;
+    height: 150px;
+    background-color: #000;
 }

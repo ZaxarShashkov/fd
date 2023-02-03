@@ -24,9 +24,9 @@ table.appendChild(racquet2);
 
 const ball = document.createElement('div');
 ball.className = 'ball';
+let pos = ball.style.transform = `translate(${ballX}px, ${ballY}px)`;
+console.log()
 table.appendChild(ball);
-ball.style.left = ballX + 'px';
-ball.style.top = ballY + 'px';
 
 
 
@@ -69,56 +69,43 @@ window.addEventListener('keydown', (e) => {
 });
 
 
-
 const moveLeft = () => {
-    clearInterval(moveRight)
-    const ball = document.querySelector('.ball');
-    ball.style.left = ballX + 'px';
-    ballX -= 2;
-    if (ballX <= 5) {
-        setInterval(moveRight,30);
+    ballY += 0;
+    ballX -= 1;
+    ball.style.transform = `translateX(${ballX}px,${ballY}px)`;
+    if (ballX <= 0) {
+        window.cancelAnimationFrame(isMovingLeft);
+        isMovingRight = window.requestAnimationFrame(moveRight);
     }
+    isMovingLeft = window.requestAnimationFrame(moveLeft);
 }
+let posBall = ball.getBoundingClientRect();
+let posRacquet = racquet.getBoundingClientRect();
+
+// 176.131 ball 176
 
 const moveRight = () => {
-    clearInterval(moveLeft)
-    const ball = document.querySelector('.ball');
-    ball.style.left = ballX + 'px';
-    ballX += 2;
-    if(ballX >= 380) {
-        setInterval(moveLeft,30)
+    let posBall = ball.getBoundingClientRect();
+    let posRacquet = racquet.getBoundingClientRect();
+    console.log(posRacquet.y)
+    console.log(posBall.y)
+    // console.log(posBall.x)
+    if (posBall.y <= posRacquet.y) {
+        console.log('asda')
     }
+    ballY += 0;
+    ballX += 1;
+    ball.style.transform = `translate(${ballX}px, ${ballY}px)`;
+    if (ballX >= 380) {
+        window.cancelAnimationFrame(isMovingRight);
+        isMovingLeft = window.requestAnimationFrame(moveLeft);
+    }
+    isMovingRight = window.requestAnimationFrame(moveRight);
 }
 
 
 const start = () => {
     isGameOver = false;
-    setInterval(moveLeft, 30);
+    isMovingRight = window.requestAnimationFrame(moveRight);
 }
 start()
-
-
-
-
-// const moveLeft = () => {
-//         ballY += 0;
-//         ballX -= 1;
-//         ball.style.transform = `translate(${ballX}px, ${ballY}px)`;
-//         if (ballX <= 10) {
-//             window.cancelAnimationFrame(isMovingLeft);
-//             isMovingRight = window.requestAnimationFrame(moveRight);
-//         }
-//         isMovingLeft = window.requestAnimationFrame(moveLeft);
-//     }
-
-
-//     const moveRight = () => {
-//         ballY += 0;
-//         ballX += 1;
-//         ball.style.transform = `translate(${ballX}px, ${ballY}px)`;
-//         if (ballX >= 390) {
-//             window.cancelAnimationFrame(isMovingRight);
-//             isMovingLeft = window.requestAnimationFrame(moveLeft);
-//         }
-//         isMovingRight = window.requestAnimationFrame(moveRight);
-//     }

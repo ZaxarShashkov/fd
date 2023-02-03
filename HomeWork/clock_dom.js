@@ -26,7 +26,7 @@ clock.appendChild(minutesArrow);
 const secondsArrow = document.createElement('div');
 secondsArrow.className = 'seconds_arrow';
 secondsArrow.style.top = 70 + 'px';
-secondsArrow.style.left = center + 'px';
+secondsArrow.style.left = 200 + 'px';
 clock.appendChild(secondsArrow);
 
 let deg = 30;
@@ -46,3 +46,15 @@ for (let i = 1; i <= 12; i++) {
     blockNumbers.style.WebkitTransformOrigin = (width / 20 - 7) + 'px' + " " + (width / 2 + 10) + 'px';
     deg += 30;
 }
+
+let secondsDeg = 6 * date.getSeconds();
+let minutesDeg = 6 * (date.getMinutes() + (1 / 60) * date.getSeconds());
+console.log(secondsDeg)
+console.log(minutesDeg)
+
+const startClock = () => {
+    secondsArrow.style.transform = `rotate(${secondsDeg += 6}deg)`;
+    minutesArrow.style.transform = `rotate(${minutesDeg += 6 / 60}deg)`
+}
+setInterval(startClock, 1000);
+

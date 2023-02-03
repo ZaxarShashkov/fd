@@ -89,35 +89,4 @@ setInfoBtn.addEventListener('click', () => {
         price
     });
     renderFunc();
-})
-
-
-
-
-
-// function sortToUp() {
-//     for (let i = 0; i < app.children.length; i++) {
-//         for (let j = i; j < app.children.length; j++) {
-//             if (+app.children[i].getAttribute('data-price') > +app.children[j].getAttribute('data-price')) {
-//                 replacedNode = app.replaceChild(app.children[j], app.children[i]);
-//                 insertAfter(replacedNode, app.children[i])
-//             }
-//         }
-//     }
-// }
-
-
-// function sortToBot() {
-//     for (let i = 0; i < app.children.length; i++) {
-//         for (let j = i; j < app.children.length; j++) {
-//             if (+app.children[i].getAttribute('data-price') < +app.children[j].getAttribute('data-price')) {
-//                 replacedNode = app.replaceChild(app.children[j], app.children[i]);
-//                 insertAfter(replacedNode, app.children[i])
-//             }
-//         }
-//     }
-// }
-
-// function insertAfter(elem, refElem) {
-//     return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
-// }
+});
